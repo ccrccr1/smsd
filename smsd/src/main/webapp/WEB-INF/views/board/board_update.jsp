@@ -3,41 +3,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport"
-	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>게시글 등록</title>
-
+<meta charset="UTF-8">
+<title>게시글 수정</title>
 <link rel="stylesheet" type="text/css" href="../css/board.css">
 
-
-<script type="text/javascript">
-</script>
 </head>
-
 <body id="KOR">
-	
-<div class="wrapper">
+	<div class="wrapper">
 	<!-- mast head start -->
 	<div id="mast-head">
 		<div class="container">
 
 			<h1 class="title" id="mastHeadTitle">축제 모임 게시판</h1>
-			
-		</div>
 
+		</div>
 	</div>
-	
-	<!-- mast head end -->
-	<form action="create" 
+<!-- mast head end -->
+	<form action="update" 
 			class="form-horizontal" 
 			method="post" 
 			name='frm'
 			enctype="multipart/form-data"
 			onsubmit="return inCheck(this)">
 			
+	<input type="hidden" name="oldfile" value="${dto.b_filename}">
+	<input type="hidden" name="b_no" value="${dto.b_no}">
+	<input type="hidden" name="col" value="${param.col}">
+	<input type="hidden" name="word" value="${param.word}">
+	<input type="hidden" name="nowPage" value="${param.nowPage}">
+	
+	
+	
 	<div id="mast-body">
 
 		<div id="infoDiv" style="">
@@ -56,7 +52,7 @@
 							<div class="form-wrap __normal __x1">
 								<div class="inner">
 									<div class="ui-input">
-										<input type="text" id="b_title" name="b_title" >
+										<input type="text" id="b_title" name="b_title" value="${dto.b_title}">
 										<label for="b_title"></label>
 									</div>
 								</div>
@@ -72,7 +68,7 @@
 							<div class="form-wrap __normal __x1">
 								<div class="inner">
 									<div class="ui-input">
-										<input  type="text" id="m_id" name="m_id">
+										<input  type="text" id="m_id" name="m_id" value="${dto.m_id}">
 										<label for="m_id"></label>
 									</div>
 								</div>
@@ -89,7 +85,7 @@
 							<div class="form-wrap __normal __x1">
 								<div class="inner">
 									<div class="ui-input">
-										<textarea rows="10" cols="70" id="b_content" name="b_content"></textarea>
+										<textarea rows="10" cols="70" id="b_content" name="b_content" >${dto.b_content}</textarea>
 										<label for="b_content"></label>
 									</div>
 								</div>
@@ -105,7 +101,7 @@
 							<div class="form-wrap __normal __x1">
 								<div class="inner">
 									<div class="ui-input">
-										<input type="file" class="form-control" id="b_filename" name="b_filenameMF" multiple="multiple">
+										<input type="file" class="form-control" id="b_filename" name="b_filenameMF" multiple="multiple" >(${dto.b_filename})
 									</div>
 								</div>
 							</div>
@@ -117,7 +113,7 @@
 				<div class="section __half __center">
 					<br><br>
 					<button type="submit" class="ui-button __square-large __blue"
-						>등록</button>
+						>확인</button>
 					<button type="button" class="ui-button __square-large __black"
 						onclick="history.back()">취소</button>
 					<br><br>
@@ -127,7 +123,5 @@
 	</div>
 	</form>
 </div>
-	
-		
 </body>
 </html>

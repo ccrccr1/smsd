@@ -20,6 +20,29 @@
 			value="/WEB-INF/views/board/board_create.jsp"/>
 	</definition>
 	
+	<definition name="/board/list" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 목록"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_list.jsp"/>
+	</definition>
+	
+	<definition name="/board/read" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_read.jsp"/>
+	</definition>
+
+	<definition name="/board/update" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 수정"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_update.jsp"/>
+	</definition>
+
+
+
 	<definition name="/board/preProc" extends="main">
 		<put-attribute name="title" 
 			value="오류처리"></put-attribute>

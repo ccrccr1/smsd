@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/top.css">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/top.css">
 <style type="text/css">
 </style>
 </head>
