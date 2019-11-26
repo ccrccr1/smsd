@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="util" uri="/ELFunctions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/top.css">
 <link rel="stylesheet" type="text/css" href="css/footer.css">
+<link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script type="text/javascript">
@@ -25,34 +28,76 @@ function wrapWindowByMask(){
     
     $(".window").show();
     
-    $(".p_btn_s").click(function (){
-    	var url = "./orderComf";
-		location.href = url;
-    })
 }
 
 $(document).ready(function(){
+	$('.p_btn_s').click(function(){
+		if($('.number_btn').val()==""){
+			alert("수량을 선택해주세요.");
+			return false;
+		}else if($('input:radio[name="pay_rull"]:checked').val()==null){
+			alert("결제수단 선택해주세요.");
+			return false;
+		}else if($(".money").text()=="0"){
+			alert("결제확인 버튼을 눌러주세요.");
+			return false;
+		}
+	})
+	$('.p_btn_s2').click(function(){
+		if($('.number_btn').val()==""){
+			alert("수량을 선택해주세요.");
+			return false;
+		}else if($('input:radio[name="pay_rull"]:checked').val()==null){
+			alert("결제수단 선택해주세요.");
+			return false;
+		}
+	});
     //검은 막 띄우기
     $(".openMask").click(function(e){
         e.preventDefault();
         wrapWindowByMask();
     });
-
     //닫기 버튼을 눌렀을 때
     $(".window .close").click(function (e) {  
         //링크 기본동작은 작동하지 않도록 한다.
         e.preventDefault();  
         $("#mask, .window").hide();  
     });       
-
     //검은 막을 눌렀을 때
     $("#mask").click(function () {  
         $(this).hide();  
         $(".window").hide();  
-
     });
-
 });
+function order_acount(){
+	var total_price = 0;
+	<c:forEach var="dto" items="${orderList}" end="4">
+		total_price = total_price + ($('#cnt_'+${dto.f_id}).val()*$('#price_'+${dto.f_id}).text());
+	</c:forEach>
+	
+	var pay_rull = $('input:radio[name="pay_rull"]:checked').val()
+	
+	if($('input:radio[name="pay_rull"]:checked').val()==null){
+		$(".money").text("0");
+	}else{
+		$(".money").text(total_price);
+		$(".pay_rull2").text(pay_rull);
+	}
+}
+function order_insert(){
+	var url = "./orderComf2";
+	url += "?m_id=" + "user4";
+	<c:forEach var="dto" items="${orderList}" end="4">
+	url += "&f_title=${dto.f_title}";
+	url += "&f_id=${dto.f_id}";
+	url += "&f_count=" + $('#cnt_'+${dto.f_id}).val();
+	url += "&f_price=${dto.f_price}";
+	url += "&o_date=${time2}";
+	
+	</c:forEach>
+	location.href = url;
+}
+
 </script>
 <style type="text/css">
 	.order_head{
@@ -92,7 +137,7 @@ $(document).ready(function(){
 		border-right: none;
 	}
 	.info_th1{
-		width: 55%;
+		width: 50%;
 	}
 	.info_td{
 		text-align: center;
@@ -153,6 +198,7 @@ $(document).ready(function(){
 	.payment{
 		height: 500px;
 		margin-bottom: 120px;
+		margin-top: 40px;
 	}
 	.payment h2{
 		margin-bottom: 10px;
@@ -228,7 +274,28 @@ $(document).ready(function(){
 		border-radius: 30px;
 		border: none;
 	}
-	
+	.p_btn_s2{
+		padding : 15px 20px;
+		margin-top: 20px;
+		color: #fff;
+		background-color: #FF4000;
+		border-radius: 30px;
+		border: none;
+	}
+	.conf_btn{
+		margin-left: 1000px;
+	}
+	.number_btn{
+		width: 50px;
+	}
+	input[type=number] { 
+    line-height: 27px; 
+	} 
+	input[type=number]::-webkit-inner-spin-button { 
+	    width: 30px; 
+	    height: 30px; 
+	 
+	}
 /* 	딤처리 */
 	#mask {  
     position:absolute;  
@@ -279,9 +346,16 @@ $(document).ready(function(){
 		text-align: center;
 		padding-top: 10px;
 	}
+	.del_btn{
+		width:30px;
+		height:30px;
+		text-align: center;
+	}
+
 </style>
 </head>
 <body>
+	<form method="post" >
 	<div class="container">
 		<div class="wrapper" >
 			<div class="order">
@@ -293,56 +367,59 @@ $(document).ready(function(){
 				<table class="info_table clearfix" >
 					<tr>
 						<th class="info_th1">상품정보</th>
-						<th>주문번호</th>
+						<th>상품번호</th>
 						<th>구매수량</th>
 						<th>가격</th>	
-						<th>구매날짜</th>											
+						<th>구매날짜</th>										
 					</tr>
-					<tr class="clearfix">
-						<td class="info_td"><img src="image/logo.jpg"><a href="#"><span class="goods">f_title</span></a></td>					
-						<td class="info_td"><p>f_id</p></td>					
-						<td class="info_td"><p>수량</p></td>					
-						<td class="info_td"><p>f_price</p></td>					
-						<td class="info_td"><p>sysdate</p></td>												
+					<c:forEach var="dto" items="${orderList}" end="4">
+					<tr class="clearfix" id="clearfix">
+						<td class="info_td"><img src="image/logo.jpg"><a href="#"><span class="goods">${dto.f_title}</span></a></td>					
+						<td class="info_td"><p>${dto.f_id}</p></td>					
+						<td class="info_td"><p><input type="number" max="20" class="number_btn" id="cnt_${dto.f_id}" min="1" name="number"></p></td>					
+						<td class="info_td" id="price"><p class="price" id="price_${dto.f_id}">${dto.f_price}</p></td>					
+						<td class="info_td"><p>${time2}</p></td>																								
 					</tr>
+					</c:forEach>
 				</table>
 			</div>
-			
+			            
 			<div class="choice">
 				<div class="choice_wrap">
-					<h2>2.결제수단 선택</h2>
+					<h2>2.결제수단 선택</h2>                 
 					<div class="cash">
-					<form action="" class="choice_frm">
 						<div class="frm_div">
 							<label><span class="c_span">신용/체크카드</span>
-								<input type="radio" class="radio" name="pay_rull">신용/체크카드
+								<input type="radio" class="radio" name="pay_rull" value="신용/체크카드">신용/체크카드
 							</label>
 						</div>
 						<hr>
 						<div class="frm_div">
 							<label><span class="c_span">온라인</span>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;<input type="radio" name="pay_rull"  class="radio" >계좌이체
+								&nbsp;&nbsp;<input type="radio" name="pay_rull"  class="radio" value="계좌이체">계좌이체
 							</label>
 						</div>
 						<hr>
 						<div class="frm_div">
 							<label><span class="c_span">기타</span>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="pay_rull" class="radio" >휴대폰 결제
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="pay_rull" class="radio" value="휴대폰">휴대폰 결제
 							</label>
 						</div>
-					</form>
 					</div>
 				</div>
 				
+				<div class="conf_btn">
+					<input type="button" class="p_btn_s2" id="p_btn_s2" value="결제확인" onclick="order_acount()">
+				</div>
 				
 			</div>
 				<div class="payment">
 					<div class="pay_wrap">
 					<h2>3.결제하기</h2>
 						<div class="pay_wrap2">
-							<div class="m_div"><span class="money">24,000</span><span class="money2">원</span></div>
+							<div class="m_div"><span class="money" id="money">0</span><span class="money2">원</span></div>
 							<p class="money_p">원활한 결제를 위한 판매자에게 정보가 제공됩니다.</p>
 							<div class="p_t_div">
 								<table class="pay_table">
@@ -375,6 +452,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	</form>
 	<div id ="wrap"> 
         <div id = "container">  
             <div id="mask"></div>
@@ -387,13 +465,13 @@ $(document).ready(function(){
                 			<th>금액</th>
                 		</tr>
                 		<tr>
-                			<td>신용카드/체크카드</td>
-                			<td>20,000</td>
+                			<td class="pay_rull2"></td>
+                			<td class="money"></td>
                 		</tr>
                 	</table>
                 </div>
                 <div class="pop_btn">
-	                <input type="button" class="p_btn_s" value="결제하기">
+	                <input type="submit" class="p_btn_s" value="결제하기" onclick="order_insert()">
 					<input type="button" class="close p_btn_c" value="취소하기">
 				</div>
             </div>

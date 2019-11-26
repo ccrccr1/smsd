@@ -14,7 +14,6 @@ $(function(){
         $('.fall').addClass('out');
         $('.winter').addClass('out');
     });
-    
     $('.spring').mouseout(function(){
     	$('.spring').removeClass('over');
     	$('.summer').removeClass('out');
@@ -122,7 +121,6 @@ $(function(){
 	.summer_h2{
 		font-size: 20px;
 	}
-	
 	.fall{
 		display: inline-block;
 		width: 25%;
@@ -172,7 +170,6 @@ $(function(){
 	.out{
 		opacity: 0.7;
 	}
-	
 </style>
 
 </head>

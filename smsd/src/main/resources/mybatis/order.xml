@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.OrderMapper">
+	<insert id="create" parameterType="OrderDTO">
+		
+		insert into order_product(o_no, m_id, f_title , f_id, p_amount, p_total, o_date)
+		values((select nvl(max(o_no), 0)+1 from order_product), #{m_id} , #{f_title},  #{f_id} , #{p_amount}, #{p_total},
+		#{o_date})
+	
+	</insert>
+	<select id="orderList" resultType="FestivalDTO" parameterType="Map">
+		select f_id, f_title, f_price from festival
+	</select>
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from order_product 
+		<where>
+			<choose>
+				<when test="col=='m_id'">
+					m_id like '%'||#{word}||'%'
+				</when>
+				<when test="col=='f_id'">
+					f_id like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="list" resultType="OrderDTO" parameterType="Map">
+		SELECT o_no, m_id, f_title, to_char(o_date,'yyyy-mm-dd') o_date,
+		f_id, p_amount, p_total, r
+		FROM(
+		SELECT o_no, m_id, o_date, f_title, f_id, p_amount, p_total, rownum as r
+		FROM(
+		SELECT o_no, m_id, o_date,  f_title, f_id, p_amount, p_total
+		FROM order_product
+		<where>
+			<choose>
+				<when test="col=='m_id'">
+					m_id like '%'||#{word}||'%'
+				</when>
+				<when test="col=='f_id'">
+					f_id like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+
+		ORDER BY o_no DESC
+		)
+		)
+		 <![CDATA[ where r>=#{sno} and r<=#{eno} ]]>
+	</select>
+</mapper>
+
+
