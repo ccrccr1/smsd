@@ -150,7 +150,7 @@ public class Utility {
 		  * @param word �˻���
 		  * @return ����¡ ���� ���ڿ�
 		  */ 
-		public static String paging(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
+		public static String paging(int totalRecord, int nowPage, int recordPerPage){ 
 		   int pagePerBlock = 5; // ���� ������ �� 
 		   int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ��ü ������  
 		   int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ��ü �׷� 
@@ -163,7 +163,7 @@ public class Utility {
 		   str.append("<ul class='pagination'> ");
 		   int _nowPage = (nowGrp-1) * pagePerBlock; // 10�� ���� �������� �̵� 
 		   if (nowGrp >= 2){ 
-		     str.append("<li><a href='./list?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></li>"); 
+		     str.append("<li><a href='./list?nowPage="+_nowPage+"'>이전</A></li>"); 
 		   } 
 		 
 		   for(int i=startPage; i<=endPage; i++){ 
@@ -174,13 +174,13 @@ public class Utility {
 		     if (nowPage == i){ 
 		       str.append("<li class='active'><a href=#>"+i+"</a></li>"); 
 		     }else{ 
-		       str.append("<li><a href='./list.do?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></li>");   
+		       str.append("<li><a href='./list.do?nowPage="+i+"'>"+i+"</A></li>");   
 		     } 
 		   } 
 		       
 		   _nowPage = (nowGrp * pagePerBlock)+1; // 10�� ���� �������� �̵� 
 		   if (nowGrp < totalGrp){ 
-		     str.append("<li><A href='./list.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></li>"); 
+		     str.append("<li><A href='./list.do?nowPage="+_nowPage+"'>다음</A></li>"); 
 		   } 
 		   str.append("</ul>"); 
 		   str.append("</div>"); 
