@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,20 @@ public class Utility {
 //	public static int rcount(int bbsno,ReplyMapper rmapper) {
 //		return rmapper.rcount(bbsno);
 //	}
+
+	public static String formatDate(String sdate) {
+		String result = "";
+		StringTokenizer s_token = new StringTokenizer(sdate,"/");
+		String[] s_dateList = new String[3];
+		for(int i=0; i < s_dateList.length; i++) {
+			s_dateList[i] = (String)s_token.nextElement();
+		}
+		s_dateList[2] = s_dateList[2].substring(2);
+		for(int i=2; i > 0; i--) {
+			result = s_dateList[i];
+		}
+		return result;
+	}
 	
 	public static String saveFileSpring(MultipartFile multipartFile, String basePath) { 
         // input form's parameter name 

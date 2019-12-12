@@ -23,8 +23,7 @@
 			<list>
 				<value>/WEB-INF/spring/member.xml</value>
 				<value>/WEB-INF/spring/order.xml</value>
-<!-- 				<value>/WEB-INF/spring/bbs.xml</value> -->
-<!-- 				<value>/WEB-INF/spring/memo.xml</value> -->
+				<value>/WEB-INF/spring/festival.xml</value>
 			</list>
 		</property>
 	</bean>

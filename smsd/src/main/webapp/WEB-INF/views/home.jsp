@@ -57,8 +57,20 @@ $(function(){
     	$('.summer').removeClass('out');
     	$('.fall').removeClass('out');
     });
+    $('.spring').click(function(){
+    	var url = "list?season="+"spring";
+		location.href = url;
+	});
+    $('.summer').click(function(){
+    	var url = "list?season="+"summer";
+		location.href = url;
+	});
+    $('.fall').click(function(){
+    	var url = "list?season="+"autumn";
+		location.href = url;
+	});
     $('.winter').click(function(){
-    	var url = "./order";
+    	var url = "list?season="+"winter";
 		location.href = url;
 	});
 });
