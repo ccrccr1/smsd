@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="util" uri="/ELFunctions"%>
 <c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -44,8 +45,8 @@
           <div class="col-md-12 text-center ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">${read.f_title }</h1>
             <div class="banner_text_iner">
-	            <a href="javascript:booking('${read.f_id}')" class="btn_1">예매하기</a>
-	            <a href="javascript:bucket('${read.f_id}')" class="btn_1">즐겨찾기</a>
+		           	<a href="javascript:booking('${read.f_id}')" class="btn_1">예매하기</a>
+	            	<a href="javascript:bucket('${read.f_id}')" class="btn_1">즐겨찾기</a>
             </div>
           </div>
         </div>
@@ -274,6 +275,11 @@
   		url += "?f_id="+f_id;
 
   		location.href=url;
+  	}
+  	function create(){
+  		var url = "${root}/member/agree";
+  		
+  		location.href = url;
   	}
   </script>
   

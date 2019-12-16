@@ -45,6 +45,13 @@
     		padding: 20px 70px;
     	}
     </style>
+    
+    <script type="text/javascript">
+    	function aa() {
+			alert("로그인을 해야만 예매가 가능합니다.");
+			location.href= "${root}/login"
+		}
+    </script>
 </head>
 
 <body>
@@ -56,7 +63,14 @@
                     <div class="banner_text text-center">
                         <div class="banner_text_iner">
                             <h1>${best.f_title}</h1>
-                            <a href="javascript:read('${best.f_id}')" class="btn_1">지금 예매하기</a>
+                            <c:choose>
+			            	<c:when test="${empty sessionScope.id}">
+			            		<a href="javascript:aa()" class="btn_1">지금 예매하기</a>
+			            	</c:when>
+			            	<c:otherwise>
+                        	   	<a href="javascript:read('${best.f_id}')" class="btn_1">지금 예매하기</a>
+			            	</c:otherwise>            	
+			            	</c:choose>
                             <a href="javascript:enrollFestival()" class="btn_1">최신화</a>
                             <a href="javascript:enrollFestivalDetail()" class="btn_1">구체화</a>
                         </div>
@@ -399,6 +413,7 @@
     			return false;
     		}
      	}
+    	
     </script>
 </body>
 
