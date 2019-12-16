@@ -124,10 +124,9 @@
 	
 	<delete id="optimize">
 		delete from festival
-		where f_id in (
-    		select f_id
-    		from festival_image
-    		where f_image is null
+		where f_id not in (
+		    select distinct f_id
+		    from festival_image
 		)
 	</delete>
 	

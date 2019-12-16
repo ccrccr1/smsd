@@ -32,12 +32,6 @@ public class TourAPIController {
 	@Autowired
 	private FestivalMapper mapper;
 
-	@GetMapping(value="/tour/api/list/test")
-	public ResponseEntity<String[]> test() {
-		String[] str = {"aaa","bbbb"};
-		return new ResponseEntity<String[]>(str, HttpStatus.OK);
-	}
-	
 	@GetMapping(value="/tour/api/list/detailCreate")
 	public ResponseEntity<String> detailCreate() {
 		ResponseEntity<String> entity = null;		
@@ -143,6 +137,8 @@ public class TourAPIController {
 				imageDTO.setF_id(dto.getF_id());
 				while(imageListIter.hasNext()) {
 					imageDTO.setF_image(imageListIter.next());
+					if(imageDTO.getF_id() == 2633479)
+					System.out.println();
 					mapper.enrollFestivalImage(imageDTO);
 				}
 				imageList.clear();
@@ -195,7 +191,7 @@ public class TourAPIController {
 				mapper.enrollFestivalImage(dto);
 				
 				//Festival 최신화 하고 최적화 반드시 필요
-				//Image 가 Null 인 Festival 제거하는 작업
+				//Image 가 없는 축제 삭제
 				mapper.optimize();
 			}
 		} catch (MalformedURLException e) {

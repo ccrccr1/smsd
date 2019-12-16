@@ -36,10 +36,6 @@
 		padding: 8px 8px;
 	}
 	
-	.paging {
-		float:left;
-		margin-left: 500px;
-	}
 </style>
 
 </head>

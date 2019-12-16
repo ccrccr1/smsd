@@ -10,18 +10,17 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/h.css">
-
 <link type="text/css" rel="stylesheet" href="../css/layout.css">
 <link type="text/css" rel="stylesheet" href="../css/information.css">
 <link type="text/css" rel="stylesheet" href="../css/cert.css">
 <link type="text/css" rel="stylesheet" href="../css/popup.css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script type="text/JavaScript">
 	window.onload = function() {
 		CKEDITOR.replace('n_content'); // <TEXTAREA>태그 id 값
@@ -43,7 +42,11 @@
     	}
 	}
 </script>
-
+<style type="text/css">
+.cke_1 cke cke_reset cke_chrome cke_editor_n_content cke_ltr cke_browser_webkit{
+	width: 500px !important;
+}
+</style>
 </head>
 <body>
 

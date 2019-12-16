@@ -1,12 +1,13 @@
-.paging_ul  {
+.paging  {
 	list-style:none;
 	float:left;
 	display:inline;
+	margin-left: 500px;
 }
-.paging_ul li {
+.paging li {
 	float:left;
 }
-.paging_ul li a {
+.paging li a {
 	float:left;
 	padding:4px;
 	margin-right:3px;
@@ -17,7 +18,7 @@
 	text-align:center;
 	text-decoration:none;
 }
-.paging_ul li a:hover, ul li a:focus {
+.paging li a:hover, ul li a:focus {
 	color:#fff;
 	border:1px solid #c0c0c0;
 	background-color:#c0c0c0;

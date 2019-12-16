@@ -33,11 +33,11 @@ public class FavoriteController {
 		
 		if(mapper.duplicate(map)>0) {
 			model.addAttribute("str", "이미 추가된 축제입니다.");
-			return "redirect:/preProc";
+			return "/preProc5";
 		} else {
 			mapper.create(map);
 			model.addAttribute("str", "즐겨찾기에 추가 되었습니다.");
-			return "redirect:/preProc";
+			return "/preProc5";
 		}	
 	}
 	

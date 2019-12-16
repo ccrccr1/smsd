@@ -9,7 +9,7 @@
 <title>공지사항</title>
 
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="../css/table_t.css">
 <link rel="stylesheet" type="text/css" href="../css/h.css">
 
 <style type="text/css">

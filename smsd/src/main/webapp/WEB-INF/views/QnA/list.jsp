@@ -22,10 +22,7 @@
 		padding: 8px 8px;
 	}
 	
-	.paging {
-		float:left;
-		margin-left: 500px;
-	}
+	
 </style>
 
 <script type="text/javascript">
@@ -141,9 +138,9 @@
 </table>
 
 <c:if test="${not empty sessionScope.id && sessionScope.grade == 'D'}">
-	<div class="button">
-		<button class="btn btn-default" type="button" 
-		onclick="location.href='create'">등록</button>
+	<div class="btn">
+		<button class="button" type="button"
+				onclick="location.href='create'">등록</button>
 	</div>
 </c:if>
 

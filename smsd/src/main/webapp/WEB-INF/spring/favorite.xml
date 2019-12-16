@@ -9,5 +9,10 @@
     	<put-attribute name="title" value="즐겨 찾기"></put-attribute>       
         <put-attribute name="body" value="/WEB-INF/views/member/favorite.jsp" />         
        
-    </definition>   
+    </definition>
+       
+    <definition name="/preProc5" template="/WEB-INF/views/member/preProc5.jsp"/> 
+    	         
+       
+       
 </tiles-definitions>

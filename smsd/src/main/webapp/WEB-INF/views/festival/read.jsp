@@ -274,7 +274,9 @@
   		var url = "${root}/favorite/create";
   		url += "?f_id="+f_id;
 
-  		location.href=url;
+  		var wr = window.open(url,"TEST","width=500,height=400");
+  		wr.moveTo((window.screen.width-500)/2, (window.screen.height-400)/2);
+  		
   	}
   	function create(){
   		var url = "${root}/member/agree";
