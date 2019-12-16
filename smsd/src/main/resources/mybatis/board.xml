@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.model.mapper.BoardMapper">
+
+	<insert id="create" parameterType="BoardDTO">
+		insert into board(b_no, b_title, b_content, b_date, b_filename, m_id, b_ref)
+		values((select nvl(max(b_no),0)+1 from board), 
+		#{b_title}, #{b_content}, sysdate, #{b_filename , jdbcType=VARCHAR}, #{m_id},(select nvl(max(b_ref),0)+1 from board)  )
+	</insert>
+	
+	<select id="list" parameterType="Map" resultType="BoardDTO">
+		select b_no, b_title, m_id, to_char(b_date, 'yyyy-mm-dd') b_date, b_cnt, b_indent, r
+		from (
+   			select b_no, b_title, m_id, b_date, b_cnt, b_indent, rownum r
+    		from(
+       			 select b_no, b_title, m_id, b_date, b_cnt, b_indent
+        		 from board
+        		 <where>
+        		 	<choose>
+        		 		<when test="col=='b_title'">
+        		 			b_title like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='b_content'">
+        		 			b_content like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='m_id'">
+        		 			m_id like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='b_title_content'">
+        		 			b_title like '%'||#{word}||'%'
+        		 			or
+        		 			b_content like '%'||#{word}||'%'
+        		 		</when>
+        		 	</choose>
+        		 </where>
+        		 order by b_ref desc, b_ansnum
+     	  	 	)
+    		)
+    	<![CDATA[
+		where r >= #{sno} and r <= #{eno}    	
+    	]]>
+	</select>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from board
+		<where>
+        		 <choose>
+        		 		<when test="col=='b_title'">
+        		 			b_title like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='b_content'">
+        		 			b_content like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='m_id'">
+        		 			m_id like '%'||#{word}||'%'
+        		 		</when>
+        		 		<when test="col=='b_title_content'">
+        		 			b_title like '%'||#{word}||'%'
+        		 			or
+        		 			b_content like '%'||#{word}||'%'
+        		 		</when>
+        		 </choose>
+        </where>
+	</select>
+	
+	<select id="read" parameterType="int" resultType="BoardDTO">
+		select b_no, b_title, b_content, to_char(b_date, 'yyyy-mm-dd') b_date, b_cnt, b_filename, m_id
+		from board
+		where b_no = #{b_no}
+	</select>
+	
+	<update id="upViewcnt" parameterType="int">
+		update board
+		set b_cnt = b_cnt + 1
+		where b_no = #{b_no}	
+	</update>
+	
+	<update id="update" parameterType="BoardDTO">
+		update board
+		set
+			b_title = #{b_title},
+			b_content = #{b_content},
+			b_filename = #{b_filename}
+		where b_no = #{b_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from board
+		where b_no = #{b_no}
+	</delete>
+
+	<select id="checkRefnum" parameterType="int" resultType="int">
+		select count(b_refnum)
+		from board
+		where b_refnum = #{b_no}
+	</select>
+	
+	<!-- 답변 처리  -->
+	
+	<update id="reply_ansnum" parameterType="Map">
+	 
+		update board
+		set
+		b_ansnum = b_ansnum+1
+		where b_ref = #{b_ref}
+		and b_ansnum > #{b_ansnum}
+		
+	</update>
+	
+	<select id="reply_read" parameterType="int" resultType="BoardDTO">
+	 
+		select b_ref, b_indent, b_ansnum
+		from board
+		where b_no = #{b_no}
+	 
+	</select>
+	
+	<insert id="reply_create" parameterType="BoardDTO">
+	 
+	 
+		insert into board(b_no, b_title, b_content, m_id, b_date, b_ref, b_indent, b_ansnum, b_refnum)
+		values((select nvl(max(b_no),0)+1 from board), #{b_title}, #{b_content}, #{m_id}, sysdate, #{b_ref}, #{b_indent}+1, #{b_ansnum}+1 , #{b_no})
+		 
+	</insert>
+	
+	
+
+</mapper>

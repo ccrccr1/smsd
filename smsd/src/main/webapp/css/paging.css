@@ -1,0 +1,24 @@
+.paging_ul  {
+	list-style:none;
+	float:left;
+	display:inline;
+}
+.paging_ul li {
+	float:left;
+}
+.paging_ul li a {
+	float:left;
+	padding:4px;
+	margin-right:3px;
+	width:15px;
+	color:#000;
+	font:bold 12px tahoma;
+	border:1px solid #eee;
+	text-align:center;
+	text-decoration:none;
+}
+.paging_ul li a:hover, ul li a:focus {
+	color:#fff;
+	border:1px solid #c0c0c0;
+	background-color:#c0c0c0;
+}

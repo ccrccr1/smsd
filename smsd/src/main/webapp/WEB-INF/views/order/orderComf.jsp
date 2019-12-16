@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="css/footer.css">
 <script type="text/javascript">
 	function list(){
-		var url = "./orderList";	
+		var url = "./list";
+		
 		location.href = url;
 	}
 </script>

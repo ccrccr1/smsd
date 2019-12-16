@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="main" template="/WEB-INF/views/template/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/template/top.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+	
+	<definition name="/qna/list" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/list.jsp" />
+	</definition>
+
+	<definition name="/qna/read" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/read.jsp" />
+	</definition>
+
+	<definition name="/qna/create" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/create.jsp" />
+	</definition>
+
+	<definition name="/qna/update" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/update.jsp" />
+	</definition>
+
+	<definition name="/qna/delete" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/delete.jsp" />
+	</definition>
+
+	<definition name="/qna/preProc" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/preProc.jsp" />
+	</definition>
+
+	<definition name="/qna/reply" extends="main">
+		<put-attribute name="title" value="QnA"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/QnA/reply.jsp" />
+	</definition>
+</tiles-definitions>

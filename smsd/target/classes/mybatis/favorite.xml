@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.model.mapper.FavoriteMapper">
+
+	<select id="duplicate" parameterType="Map" resultType="int">	
+	 select count(*) from favorite where m_id = #{m_id} and f_id = #{f_id}
+	</select>
+
+	<insert id="create" parameterType="Map">
+		insert into favorite(f_no,f_date,f_id,f_amount,m_id)
+		values((select nvl(max(f_no),0)+1 from favorite), sysdate,#{f_id},1, #{m_id})
+	</insert>
+	
+	<select id="list" parameterType="Map" resultType="FavoriteDTO">	
+        
+<!--         select t.*, r  -->
+<!-- 			from( -->
+<!--         		select t.*, rownum r  -->
+<!--        			 from( -->
+<!--                			 select f1.f_no, f1.f_date, f1.f_id, f1.f_amount, f1.m_id , f2.f_title, to_char(f2.f_sdate,'yyyy-mm-dd') f_sdate , to_char(f2.f_edate,'yyyy-mm-dd') f_edate, f2.f_price , f3.F_IMAGE -->
+<!--                			 from favorite f1 inner join festival f2 -->
+<!--                			 on f1.f_id = f2.f_id -->
+<!--                			 inner join festival_image f3 -->
+<!--                			 on f2.f_id = f3.f_id  -->
+<!--                			 where f1.m_id = #{m_id} -->
+<!--                 		 order by f_date desc -->                		 
+                		 
+                		 select  f1.f_no, f1.f_date, f1.f_id, f1.f_amount, f1.m_id , f2.f_title, to_char(f2.f_sdate,'yyyy-mm-dd') f_sdate , to_char(f2.f_edate,'yyyy-mm-dd') f_edate, f2.f_price , f3.f_image
+               			 from favorite f1 inner join festival f2
+               			 on f1.f_id = f2.f_id
+               			 inner join (select num, f_id, f_image, r
+    									from (
+       											 select num, f_id, min(f_image) over(partition by f_id order by num) f_image, row_number() over(partition by f_id order by num) r
+        										 from festival_image
+    										)
+    									where r = 1) f3
+               			 on f2.f_id = f3.f_id 
+               			 where f1.m_id = #{m_id}                         
+                		 order by f_date desc
+<!--            			 ) t             -->
+<!--      			) t -->
+<!-- 		<![CDATA[ -->
+<!-- 		where r >= #{sno} and r <= #{eno} -->
+<!-- 		]]> -->
+		
+	</select>	
+	
+	<update id="amount_update" parameterType="Map">
+		update favorite
+		set f_amount = #{amount}
+		where m_id = #{m_id} and f_id = #{f_id}
+	</update>
+	
+	<delete id="delete" parameterType="Map">
+		delete from favorite
+		where m_id = #{m_id, jdbcType=VARCHAR} and f_id = #{f_id, jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

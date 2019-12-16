@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.OrderMapper">
+	<select id="m_money" resultType="MemberDTO" parameterType="Map">
+		select m_money from member
+		where m_id=#{m_id}
+	</select>
+	<update id="updatemoney" parameterType="Map">
+		update member set m_money
+		= m_money-#{up_money}
+		where m_id = #{m_id}
+	</update>
+	<update id="updatemoney2" parameterType="Map">
+		update member set
+		m_money = m_money+#{up_money}
+		where m_id = 'admin'
+	</update>
+	<insert id="create" parameterType="OrderDTO">
+		insert into
+		order_product(o_no, m_id, f_title , f_id, p_amount, p_total, o_date)
+		values((select nvl(max(o_no), 0)+1 from order_product), #{m_id} ,
+		#{f_title}, #{f_id} , #{p_amount}, #{p_total},
+		#{o_date})
+	</insert>
+	<select id="orderList" resultType="FestivalDTO"
+		parameterType="Map">
+		select f1.f_id, f2.f_image, f1.f_title, f1.f_price from festival f1
+		inner join (select num, f_id, f_image, r
+		from (
+		select num, f_id, min(f_image) over(partition by f_id order by num) f_image,
+		row_number() over(partition by f_id order by num) r
+		from festival_image
+		)
+		where r = 1) f2
+		on f1.f_id = f2.f_id
+		<where>
+			<choose>
+				<when test="f_id_cnt == 1">
+					f1.f_id = #{f_id0}
+				</when>
+				<when test="f_id_cnt == 2">
+					f1.f_id = #{f_id0} or f1.f_id = #{f_id1}
+				</when>
+				<when test="f_id_cnt == 3">
+					f1.f_id = #{f_id0} or f1.f_id = #{f_id1} or f1.f_id
+					= #{f_id2}
+				</when>
+				<when test="f_id_cnt == 4">
+					f1.f_id = #{f_id0} or f1.f_id = #{f_id1} or f1.f_id
+					= #{f_id2} or f1.f_id = #{f_id3}
+				</when>
+				<when test="f_id_cnt == 5">
+					f1.f_id = #{f_id0} or f1.f_id = #{f_id1} or f1.f_id
+					= #{f_id2} or f1.f_id = #{f_id3} or f1.f_id = #{f_id4}
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from order_product
+		<where>
+			<choose>
+				<when test="col=='m_id'">
+					m_id like '%'||#{word}||'%'
+				</when>
+				<when test="col=='f_id'">
+					f_id like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="month_sum" resultType="AmountDTO"
+		parameterType="Map">
+		select extract(year from o_date) as YEAR,extract(month
+		from o_date) as MONTH, sum(p_total) as month_total
+		from order_product
+		group by extract(year from o_date),extract(month from o_date)
+		order by
+		YEAR, MONTH
+	</select>
+	<select id="sum" resultType="int">
+		select sum(p_total)
+		from
+		order_product
+	</select>
+
+	<select id="list" resultType="OrderDTO" parameterType="Map">
+		SELECT o_no, m_id, f_title, to_char(o_date,'yyyy-mm-dd') o_date,
+		f_id,
+		p_amount, p_total, r
+		FROM(
+		SELECT o_no, m_id, o_date, f_title, f_id,
+		p_amount, p_total, rownum as r
+		FROM(
+		SELECT o_no, m_id, o_date, f_title,
+		f_id, p_amount, p_total
+		FROM order_product
+		<where>
+			<choose>
+				<when test="col=='m_id'">
+					m_id like '%'||#{word}||'%'
+				</when>
+				<when test="col=='f_id'">
+					f_id like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+
+		ORDER BY o_no DESC
+		)
+		)
+		 <![CDATA[ where r>=#{sno} and r<=#{eno} ]]>
+	</select>
+</mapper>
+
+

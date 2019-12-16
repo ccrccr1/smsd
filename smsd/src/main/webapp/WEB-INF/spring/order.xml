@@ -10,19 +10,28 @@
     <definition name="/home" template="/WEB-INF/views/home.jsp"> 
     
     </definition> 
-    
-	<definition name="/order" extends="main"> 
+	<definition name="/order/order" extends="main"> 
         <put-attribute name="title" value="project test"/> 
         <put-attribute name="body" value="/WEB-INF/views/order/order.jsp" /> 
     </definition>   
     
-    <definition name="/orderComf" extends="main"> 
+    <definition name="/order/orderComf" extends="main"> 
         <put-attribute name="title" value="project test"/> 
         <put-attribute name="body" value="/WEB-INF/views/order/orderComf.jsp" /> 
     </definition>   
     
-    <definition name="/orderList" extends="main"> 
+    <definition name="/order/list" extends="main"> 
         <put-attribute name="title" value="project test"/> 
-        <put-attribute name="body" value="/WEB-INF/views/order/orderList.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/views/order/list.jsp" /> 
+    </definition>   
+    
+    <definition name="/f_register" extends="main"> 
+        <put-attribute name="title" value="project test"/> 
+        <put-attribute name="body" value="/WEB-INF/views/festival/f_register.jsp" /> 
+    </definition>   
+    
+    <definition name="/preProc" extends="main"> 
+        <put-attribute name="title" value="project test"/> 
+        <put-attribute name="body" value="/WEB-INF/views/order/preProc.jsp" /> 
     </definition>   
 </tiles-definitions>

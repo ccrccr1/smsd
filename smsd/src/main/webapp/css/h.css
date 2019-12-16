@@ -1,0 +1,81 @@
+.h h1 {
+	font-size: 250%;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	color: #666;
+	border-bottom: 2px solid #ccc;
+	border-left: 10px solid #55555B;
+	text-height: 200%;
+	padding: 3px 5px;
+	margin: 5px 0;
+	letter-spacing: 1px;
+	word-spacing: 3px;
+}
+
+.h h2 {
+	font-size: 200%;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	color: #666;
+	PADDING-BOTTOM: 10px;
+	TEXT-ALIGN: left;
+	BORDER-LEFT: #55555B 8px solid;
+	padding: 3px 5px;
+	margin: 5px 0;
+	BACKGROUND-COLOR: #FFF;
+	border-bottom: 1px solid #000;
+}
+
+.h h3 {
+	FONT-SIZE: 22px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	COLOR: #2E86B9;
+	PADDING-BOTTOM: 10px;
+	TEXT-ALIGN: left;
+	BORDER-LEFT: #55555B 8px solid;
+	padding: 3px 5px;
+	margin: 5px 0;
+	BACKGROUND-COLOR: #FFF;
+	BORDER-BOTTOM: 1px solid #000;
+}
+
+.h h4 {
+	FONT-SIZE: 22px;
+	COLOR: #eeeeee;
+	PADDING-BOTTOM: 10px;
+	TEXT-ALIGN: left;
+	PADDING-TOP: 10px;
+	PADDING-LEFT: 10px;
+	BORDER-LEFT: #00b5ff 8px solid;
+	PADDING-RIGHT: 10px;
+	BACKGROUND-COLOR: #282828;
+	border-radius: 3px;
+}
+
+.h h5 {
+	font-size: 22px !important;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	padding: 3px 5px;
+	margin: 5px 0;
+	BACKGROUND-COLOR: #FFF;
+	BORDER-BOTTOM: 2px solid #ccc;
+	BORDER-TOP: 2px solid #ccc;
+	BORDER-LEFT: #4D82B8 8px solid;
+	BORDER-RIGHT: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+}
+
+.h h6 {
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New",
+		Courier, monospace !important;
+	font-weight: normal !important;
+	font-style: normal !important;
+	font-size: 1em !important;
+	min-height: inherit !important;
+	min-height: auto !important;
+	PADDING-BOTTOM: 4px;
+	PADDING-TOP: 4px;
+	PADDING-LEFT: 10px;
+	PADDING-RIGHT: 4px;
+	BACKGROUND-COLOR: #FFF;
+	BORDER-LEFT: #03867B 4px solid;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+
+<tiles-definitions>
+	<definition name="/festival/list" extends="main">
+		<put-attribute name="title" value="Festival List"/>
+		<put-attribute name="body" value="/WEB-INF/views/festival/list.jsp"/>
+	</definition>
+
+	<definition name="/festival/read" extends="main">
+		<put-attribute name="title" value="Festival Read"/>
+		<put-attribute name="body" value="/WEB-INF/views/festival/read.jsp"/>
+	</definition>
+	
+</tiles-definitions>

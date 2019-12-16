@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.QnaMapper">
+
+<select id="r_read" parameterType="int" resultType="QnaDTO">
+	select q_no, q_content, q_title, to_char(q_date, 'yyyy-mm-dd') q_date, m_ID
+	from qna
+	where q_refnum = #{q_no}
+</select>
+
+<update id="reply_ansnum" parameterType="Map">
+	update qna set
+	q_ansnum = q_ansnum + 1
+	where
+	q_ref = #{q_ref}
+	and
+	q_ansnum > #{q_ansnum}
+</update>
+
+<select id="reply_read" parameterType="int" resultType="QnaDTO">
+	select q_no, q_ref, q_indent, q_ansnum, q_title, q_content
+	from qna
+	where q_no = #{q_no}
+</select>
+
+<insert id="reply_create" parameterType="QnaDTO">
+	insert into qna (q_no, q_title, q_content, q_date, m_ID,
+	q_ref, q_indent, q_ansnum, q_refnum)
+	values ((select nvl(max(q_no), 0) + 1 as q_no from qna), 
+	#{q_title}, #{q_content}, sysdate, #{m_ID},
+	#{q_ref}, #{q_indent} + 1, #{q_ansnum} + 1, #{q_no})
+</insert>
+
+<update id="update" parameterType="QnaDTO">
+	update qna set
+	q_title = #{q_title},
+	q_content = #{q_content}
+	where q_no = #{q_no}
+</update>
+
+<!-- <select id="idCheck" parameterType="Map" resultType="int"> -->
+<!-- 	select count (q_no) as cnt from qna where q_no = #{q_no} -->
+<!-- 	and m_ID = #{m_ID} -->
+<!-- </select> -->
+
+<select id="checkRefnum" parameterType="int" resultType="int">
+	select count(q_refnum) from qna
+	where q_refnum = #{q_no}
+</select>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM qna
+	WHERE q_no = #{q_no}
+</delete>
+
+<insert id="create" parameterType="QnaDTO">
+	insert into qna(q_no, m_id, q_title, q_content, q_date, q_ref)
+	values((select nvl(max(q_no), 0) + 1 from qna),
+	#{m_ID}, #{q_title}, #{q_content}, sysdate, (select nvl(max(q_ref), 0) + 1 from qna))
+</insert>
+
+<select id="read" parameterType="int" resultType="QnaDTO">
+	select m_ID, q_no, q_title, q_content, to_char(q_date, 'yyyy-mm-dd') q_date,
+	q_cnt, q_ref, q_indent, q_refnum
+	from qna
+	where q_no = #{q_no}
+</select>
+
+<update id="upq_cnt" parameterType="int">
+	update qna set
+	q_cnt = q_cnt + 1
+	where q_no = #{q_no}
+</update>
+
+<select id="list" parameterType="Map" resultType="QnaDTO">
+	select q_no, q_title, m_id, to_char(q_date, 'yyyy-mm-dd') q_date, q_cnt, q_ref, q_indent, q_ansnum, q_refnum, r
+		from (
+    	select q_no, q_title, m_id, q_date, q_cnt, q_ref, q_indent, q_ansnum, q_refnum, rownum r
+    		from (
+        	select q_no, q_title, m_id, q_date, q_cnt, q_ref, q_indent, q_ansnum, q_refnum
+        		from qna
+        		<where>
+        			<choose>
+        				<when test="col == 'm_id'">
+        					m_id like '%'||#{word}||'%'
+        				</when>
+
+        				<when test="col == 'q_title'">
+               				q_title like '%'||#{word}||'%'
+               			</when>
+               			
+               			<when test="col == 'm_id_q_title'">
+               				m_id like '%'||#{word}||'%'
+               				or
+               				q_title like '%'||#{word}||'%'
+               			</when>
+               			
+               			<when test="col == 'q_total'">
+               				q_total like '%'||#{word}||'%'
+               			</when>
+        			</choose>
+        		</where>
+            order by q_ref desc, q_ansnum
+    		)
+		)
+	<![CDATA[
+	where r >= #{sno} and r <= #{eno}
+	]]>
+</select>
+
+<select id="total" parameterType="Map" resultType="int">
+	select count(*) from qna
+	<where>
+		<choose>
+			<when test="col == 'm_id'">
+				m_id like '%'||#{word}||'%'
+			</when>
+		
+			<when test="col == 'q_title'">
+   				q_title like '%'||#{word}||'%'
+   			</when>
+   			
+   			<when test="col == 'm_id_q_title'">
+   				m_id like '%'||#{word}||'%'
+   				or
+   				q_title like '%'||#{word}||'%'
+   			</when>
+   			
+   			<when test="col == 'q_total'">
+   				q_total like '%'||#{word}||'%'
+   			</when>
+		</choose>
+	</where>
+</select>
+
+</mapper>

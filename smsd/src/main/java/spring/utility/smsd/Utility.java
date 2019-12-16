@@ -13,13 +13,17 @@ import java.util.StringTokenizer;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import spring.model.mapper.BoardReplyMapper;
+
 
 public class Utility {
 	
 //	public static int rcount(int bbsno,ReplyMapper rmapper) {
 //		return rmapper.rcount(bbsno);
 //	}
-
+	public static int rcount(int b_no, BoardReplyMapper brmapper) {
+		return brmapper.rcount(b_no);
+	}
 	public static String formatDate(String sdate) {
 		String result = "";
 		StringTokenizer s_token = new StringTokenizer(sdate,"/");

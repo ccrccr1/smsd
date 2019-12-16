@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>주문</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/top.css">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/top.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/footer.css">
 </head>
 <body>
 	<div class="footer">
@@ -18,7 +19,7 @@
 				</div>
 				<div class="ftext_2">
 					<h3>
-						고객센터 <a href="#" class="link_mun">문의 전 클릭</a>
+						고객센터 <a href="${root}/qna/list"class="link_mun">문의 클릭</a>
 					</h3>
 					<p>쇼핑 1588-1555 도서 1577-2555 티켓 1544-1555 투어 1588-3443 펫
 						1644-2397 팩스 02-6924-9000 이메일 helpdesk@interpark.com 서울특별시 구로구
@@ -38,12 +39,12 @@
 			<hr class="hr">
 			<div class="footer_img">
 				<ul class="footer_ul">
-					<li class="footer_li"><img src="image/logo.jpg"></li>
-					<li class="footer_li"><img src="image/logo.jpg"></li>
-					<li class="footer_li"><img src="image/logo.jpg"></li>
-					<li class="footer_li"><img src="image/logo.jpg"></li>
-					<li class="footer_li"><img src="image/logo.jpg"></li>
-					<li class="footer_li"><img src="image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
+					<li class="footer_li"><img src="${root}/image/logo.jpg"></li>
 				</ul>
 			</div>
 		</div>

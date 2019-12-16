@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.model.mapper.BoardReplyMapper">
+
+
+	<insert id="create" parameterType="BoardReplyDTO">
+		<selectKey keyProperty="br_no" resultType="int" order="BEFORE">
+			select nvl(max(br_no),0)+1 from board_reply
+		</selectKey>
+	
+		insert into board_Reply(br_no, br_date, br_content, m_id, b_no)
+		values(#{br_no}, sysdate, #{br_content}, #{m_id}, #{b_no})
+
+	</insert>
+	
+	<select id="list" parameterType="Map" resultType="BoardReplyDTO">
+		select br_no, br_content, to_char(br_date, 'yyyy-mm-dd') br_date, m_id, b_no, r
+		from(
+   			 select br_no, br_content, br_date, m_id, b_no, rownum r
+  			 from(
+       			 select br_no, br_content, br_date, m_id, b_no
+       			 from board_reply
+       			 	where b_no = #{b_no}
+       			 	order by br_no desc
+       			 )
+   		 	)
+   		<![CDATA[
+		where r > = #{sno} and r<= #{eno}
+   		]]>   			
+	</select>
+	
+	<select id="total" parameterType="int" resultType="int">
+		select count(*) from board_reply
+		where b_no = #{b_no}
+	</select>
+	
+	<select id="read" parameterType="int" resultType="BoardReplyDTO">
+		select * from board_reply
+		where br_no = #{br_no}
+	</select>
+
+	<update id="update" parameterType="BoardReplyDTO">
+		update board_reply
+		set
+  	 	br_content = #{br_content}
+		where br_no = #{br_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from board_reply
+		where br_no = #{br_no}
+	</delete>
+	
+	<delete id="rdelete" parameterType="int">
+		delete from board_reply
+		where b_no = #{b_no}
+	</delete>
+	
+	<select id="rcount" parameterType="int" resultType="int">
+		select count(*) from board_reply
+		where b_no = #{b_no}
+	</select>
+
+</mapper>

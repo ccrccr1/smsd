@@ -24,6 +24,11 @@
 				<value>/WEB-INF/spring/member.xml</value>
 				<value>/WEB-INF/spring/order.xml</value>
 				<value>/WEB-INF/spring/festival.xml</value>
+				<value>/WEB-INF/spring/favorite.xml</value>
+				<value>/WEB-INF/spring/notice.xml</value>
+				<value>/WEB-INF/spring/qna.xml</value>
+				<value>/WEB-INF/spring/board.xml</value>
+				
 			</list>
 		</property>
 	</bean>

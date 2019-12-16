@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.FestivalMapper">
+	
+	<insert id="enrollFestival" parameterType="FestivalDTO">
+		insert into festival(f_id, f_title, f_area, f_address, f_sdate, f_edate, f_price, f_cnt)
+		values(
+			#{f_id},
+			#{f_title, jdbcType=VARCHAR},
+			#{f_area, jdbcType=NUMERIC},
+			#{f_address, jdbcType=VARCHAR},
+			#{f_sdate, jdbcType=DATE},
+			#{f_edate, jdbcType=DATE},
+			#{f_price, jdbcType=NUMERIC},
+			#{f_cnt, jdbcType=NUMERIC}
+		)
+	</insert>
+
+	<insert id="enrollFestivalImage" parameterType="FestivalDTO">
+		insert into festival_image(num, f_id, f_image)
+		values(
+			(select nvl(max(num),0)+1 from festival_image),
+			#{f_id},
+			#{f_image, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="topFestivalList" parameterType="Map" resultType="FestivalDTO">
+		select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, f_image, f_rank
+		from (
+		    select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, dense_rank() over(order by f_cnt desc) f_rank
+		    from festival
+		    <![CDATA[
+			    where f_sdate >= #{sdate} and f_edate <= #{edate}
+		    ]]>
+		)
+        inner join
+        (
+            select num, f_id, f_image, r
+            from (
+                select num, f_id, min(f_image) over(partition by f_id order by num) f_image, row_number() over(partition by f_id order by num) r
+                from festival_image
+            )
+            where r = 1
+        )
+		using(f_id)
+		<![CDATA[
+	        where f_rank <= 4
+		]]>
+	</select>
+	
+	<select id="searchFestivalList" parameterType="Map" resultType="FestivalDTO">
+		select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, f_image, r
+		from (
+		    select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, rownum r
+		    from festival
+		    <where>
+			    <choose>
+			    	<when test="price == '1'">
+					    <![CDATA[
+						    f_area=#{area} and f_sdate >= #{sdate} and f_edate <= #{edate} and f_price <= 3000
+					    ]]>
+			    	</when>
+			    	<when test="price == '2'">
+					    <![CDATA[
+						    f_area=#{area} and f_sdate >= #{sdate} and f_edate <= #{edate} and f_price > 3000 and f_price <= 5000 
+					    ]]>
+			    	</when>
+			    	<when test="price == '3'">
+					    <![CDATA[
+						    f_area=#{area} and f_sdate >= #{sdate} and f_edate <= #{edate} and f_price > 5000 and f_price <= 10000
+					    ]]>
+			    	</when>
+			    	<when test="price == '4'">
+					    <![CDATA[
+						    f_area=#{area} and f_sdate >= #{sdate} and f_edate <= #{edate} and  f_price > 10000
+					    ]]>
+			    	</when>
+			    </choose>		    
+		    </where>
+		    order by f_sdate desc
+		) 
+        inner join
+        (
+            select num, f_id, f_image, r_n
+            from (
+                select num, f_id, min(f_image) over(partition by f_id order by num) f_image, row_number() over(partition by f_id order by num) r_n
+                from festival_image
+            )
+            where r_n = 1        
+        )
+		using(f_id)
+		<![CDATA[
+			where r <= 12
+		]]>
+	</select>
+	
+	<select id="recentFestivalList" parameterType="Map" resultType="FestivalDTO">
+		select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, f_image, r
+		from (
+		    select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, rownum r
+		    from festival
+		    <![CDATA[
+			    where f_sdate >= #{sdate} and f_edate <= #{edate}
+		    ]]>
+		    order by f_sdate desc
+		) 
+        inner join
+        (
+            select num, f_id, f_image, r_n
+            from (
+                select num, f_id, min(f_image) over(partition by f_id order by num) f_image, row_number() over(partition by f_id order by num) r_n
+                from festival_image
+            )
+            where r_n = 1        
+        )
+		using(f_id)
+		<![CDATA[
+			where r <= 12
+		]]>
+	</select>
+	
+	<delete id="optimize">
+		delete from festival
+		where f_id in (
+    		select f_id
+    		from festival_image
+    		where f_image is null
+		)
+	</delete>
+	
+	<select id="allFestivalId" resultType="java.lang.Integer">
+		select f_id
+		from festival
+	</select>
+	
+	<update id="enrollFestivalDetail" parameterType="FestivalDTO">
+		update festival
+		set
+    		f_content = #{f_content, jdbcType=CLOB},
+    		f_eventplace = #{f_eventplace, jdbcType=VARCHAR},
+	    	f_playtime = #{f_playtime, jdbcType=VARCHAR},
+    		f_age = #{f_age, jdbcType=VARCHAR},
+    		f_telname = #{f_telname, jdbcType=VARCHAR},
+    		f_tel = #{f_tel, jdbcType=VARCHAR},
+    		f_homepage = #{f_homepage, jdbcType=VARCHAR}
+    	where
+    		f_id = #{f_id}
+	</update>
+	
+	<select id="readFestival" parameterType="int" resultType="FestivalDTO">
+	    select f_id, f_title, f_content, f_address, f_eventplace, to_char(f_sdate,'yy-mm-dd') f_sdate, to_char(f_edate, 'yy-mm-dd') f_edate, f_playtime, f_age, f_telname, f_tel, f_price, f_homepage, f_cnt, f_image
+	    from 
+	    (
+	        select f_id, f_title, f_content, f_address, f_eventplace, f_sdate, f_edate, f_playtime, f_age, f_telname, f_tel, f_price, f_homepage, f_cnt
+	        from festival
+	    )
+	    right outer join
+	    (
+	        select f_id, f_image
+	        from festival_image
+	    )
+	    using(f_id)
+	    where f_id = #{id}
+	</select>
+</mapper>

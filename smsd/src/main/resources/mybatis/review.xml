@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.model.mapper.ReviewMapper">
+
+	<insert id="create" parameterType="ReviewDTO">
+		<selectKey keyProperty="r_no" resultType="int" order="BEFORE">
+			select nvl(max(r_no),0)+1 from review
+		</selectKey>
+	
+		insert into review(r_no, r_date, r_title, r_content, r_star, r_file, m_id, f_id)
+		values(#{r_no}, sysdate, #{r_title}, #{r_content}, #{r_star}, #{r_file, jdbcType=VARCHAR }, #{m_id}, #{f_id})
+
+	</insert>
+	
+	<select id="list" parameterType="int" resultType="ReviewDTO">
+		
+       	 select r_no, r_title, r_content, r_star, r_file, to_char(r_date, 'yyyy-mm-dd') r_date, m_id, f_id
+       	 from review
+       	 	where f_id = #{f_id}
+       	 	order by r_no desc
+  
+   	 			
+	</select>
+
+	
+	<select id="total" parameterType="int" resultType="int">
+		select count(*) from review
+		where f_id = #{f_id}
+	</select>
+	
+	
+	<update id="update" parameterType="ReviewDTO">
+		update review
+		set
+		r_title = #{r_title},
+  	 	r_content = #{r_content},
+  	 	r_file = #{r_file , jdbcType=VARCHAR},
+  	 	r_star = #{r_star}
+		where r_no = #{r_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from review
+		where r_no = #{r_no}
+	</delete>
+	
+	<delete id="rdelete" parameterType="int">
+		delete from review
+		where f_id = #{f_id}
+	</delete>
+
+</mapper>

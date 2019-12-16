@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="main"
+		template="/WEB-INF/views/template/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/board/create" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 등록"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_create.jsp"/>
+	</definition>
+	
+	<definition name="/board/list" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 목록"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_list.jsp"/>
+	</definition>
+	
+	<definition name="/board/read" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_read.jsp"/>
+	</definition>
+
+	<definition name="/board/update" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 수정"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_update.jsp"/>
+	</definition>
+	<definition name="/board/reply" extends="main">
+		<put-attribute name="title" 
+			value="모임게시판 답변"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/board_reply.jsp"/>
+	</definition>
+
+
+
+	<definition name="/board/preProc" extends="main">
+		<put-attribute name="title" 
+			value="오류처리"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/preProc.jsp"/>
+	</definition>
+
+	<!-- review top.jsp에 연결 -->
+
+	<definition name="/review" extends="main">
+		<put-attribute name="title" 
+			value="후기"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/review.jsp"/>
+	</definition>
+
+
+
+
+</tiles-definitions>
