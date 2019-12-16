@@ -7,7 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="${root }/resources/createcss/information.css" />
+	href="${root }/css/createcss/information.css" />
+<link rel="stylesheet"
+	href="${root }/css/createcss/layout.css" />
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>

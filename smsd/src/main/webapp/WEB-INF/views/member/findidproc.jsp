@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${root }/resources/logincss/lpoint.css"/>
-<link rel="stylesheet" href="${root }/resources/logincss/layout.css"/>
+<link rel="stylesheet" href="${root }/css/logincss/lpoint.css"/>
+<link rel="stylesheet" href="${root }/css/logincss/layout.css"/>
 <title>Insert title here</title>
 <script type="text/javascript">
 function use(){

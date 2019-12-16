@@ -6,6 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="${root }/css/createcss/information.css" />
+<link rel="stylesheet"
+	href="${root }/css/createcss/layout.css" />
 <script type="text/javascript">
 
 function send(){

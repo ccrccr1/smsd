@@ -102,9 +102,9 @@ $(function() {
 
 </script>
 <link rel="stylesheet"
-	href="${root }/resources/createcss/information.css" />
+	href="${root }/css/createcss/information.css" />
 <link rel="stylesheet"
-	href="${root }/resources/createcss/layout.css" />
+	href="${root }/css/createcss/layout.css" />
 <title>Insert title here</title>
 </head>
 <body>

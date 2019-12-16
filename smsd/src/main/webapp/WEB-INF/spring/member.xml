@@ -47,6 +47,18 @@
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/preProc2.jsp" /> 
 </definition>   
+<definition name="/preProc3" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/preProc3.jsp" /> 
+</definition>   
+<definition name="/preProc4" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/preProc4.jsp" /> 
+</definition>   
+<definition name="/iwrite" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/iwritecnt.jsp" />
+</definition>   
 
    
 </tiles-definitions>

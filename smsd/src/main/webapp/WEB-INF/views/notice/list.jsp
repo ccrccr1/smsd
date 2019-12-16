@@ -10,7 +10,7 @@
 <title>공지사항</title>
 
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="../css/table_t.css">
 <link rel="stylesheet" type="text/css" href="../css/h.css">
 <link rel="stylesheet" type="text/css" href="../css/search.css">
 <link rel="stylesheet" type="text/css" href="../css/paging.css">

@@ -5,7 +5,12 @@
 <c:set var="i" value="0"/>
 <!DOCTYPE html>
 <html>
+
 <head>
+<link rel="stylesheet"
+	href="${root }/css/createcss/information.css" />
+<link rel="stylesheet"
+	href="${root }/css/createcss/layout.css" />
 <meta charset="UTF-8">
 <style type="text/css">
 #list:nth-of-type(n+5){

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>QnA</title>
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="../css/table_t.css">
 <link rel="stylesheet" type="text/css" href="../css/h.css">
 <link rel="stylesheet" type="text/css" href="../css/search.css">
 <link rel="stylesheet" type="text/css" href="../css/paging.css">
