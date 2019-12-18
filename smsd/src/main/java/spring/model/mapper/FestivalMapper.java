@@ -10,6 +10,7 @@ public interface FestivalMapper {
 	int enrollFestivalImage(FestivalDTO dto);
 	int enrollFestival(FestivalDTO dto);
 	int optimize();
+	void upViewCnt(int id);
 	List<FestivalDTO> topFestivalList(Map map);
 	List<FestivalDTO> recentFestivalList(Map map);
 	List<FestivalDTO> searchFestivalList(Map map);

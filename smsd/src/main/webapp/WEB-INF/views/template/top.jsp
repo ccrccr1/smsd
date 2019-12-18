@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문</title>
-<link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/top.css">
-<link rel="stylesheet" type="text/css" href="${root}/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
 <style type="text/css">
 </style>
 </head>
@@ -26,7 +25,7 @@
 				<c:choose>
 					<c:when test="${empty sessionScope.id }">
 					<li><a href="${root}/login">로그인</a></li>
-					<li><a href="${root}/create">회원가입</a></li>
+					<li><a href="${root}/agree">회원가입</a></li>
 					</c:when>
 					<c:otherwise>					
 					<li><a href="${root }/logout">로그아웃</a></li>

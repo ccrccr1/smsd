@@ -44,6 +44,24 @@
     		font-size: 30px;
     		padding: 20px 70px;
     	}
+    	h1,h2,h3,h4,h5,h6{
+    	color:black;
+    	}
+    	p{
+    		color:black;
+    		padding-top: 5px;
+		    opacity: 0.5;
+		    font-size: 12px;
+		    line-height: 16px;
+    	}
+    	hr{
+    		margin-top: 0;
+		    margin-bottom: 0;
+		    border-style: inset;
+	    	border-width: 1px;
+		   	border-top: none;
+		}
+
     </style>
     
     <script type="text/javascript">
@@ -68,11 +86,9 @@
 			            		<a href="javascript:aa()" class="btn_1">지금 예매하기</a>
 			            	</c:when>
 			            	<c:otherwise>
-                        	   	<a href="javascript:read('${best.f_id}')" class="btn_1">지금 예매하기</a>
+                        	   	<a href="javascript:read('${best.f_id}')" class="btn_1 <c:if test="${sessionScope.id =='admin'}">hide</c:if>">지금 예매하기</a>
 			            	</c:otherwise>            	
 			            	</c:choose>
-                            <a href="javascript:enrollFestival()" class="btn_1">최신화</a>
-                            <a href="javascript:enrollFestivalDetail()" class="btn_1">구체화</a>
                         </div>
                     </div>
                 </div>
@@ -231,111 +247,114 @@
     <section class="hotel_list section_padding">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-6">
+                <div class="col-xl-7">
                     <div class="section_tittle text-center">
-                        <h2>진행 중인 축제들</h2>
+                        <c:choose>
+                        	<c:when test="${!isNull}"><h2>진행 중인 축제들</h2></c:when>
+                        	<c:otherwise><h2>진행 중인 축제가 없습니다.</h2></c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
             <div class="row">
-            	<c:forEach var="dto" items="${recentList}">
-	                <div class="col-lg-4 col-sm-6" style="height: 500px;">
-	                    <div class="single_ihotel_list" style="border-bottom: none;">
-	                        <img src="${dto.f_image}" alt="" style="width: 400px; height: 300px;">
-	                        <div class="hotel_text_iner">
-	                            <h3><a href="javascript:read('${dto.f_id}')">${dto.f_title}</a></h3>
-	                            <div class="place_review">
-	                                <a href="#"><i class="fas fa-star"></i></a>
-	                                <a href="#"><i class="fas fa-star"></i></a>
-	                                <a href="#"><i class="fas fa-star"></i></a>
-	                                <a href="#"><i class="fas fa-star"></i></a>
-	                                <a href="#"><i class="fas fa-star"></i></a>
-	                                <span>(210 review)</span>
-	                            </div>
-	                            <p>${dto.f_address}</p>
-	                            <h5>From <span>${dto.f_price} 원</span></h5>
-	                        </div>
-	                    </div>
-	                </div>
-            	</c:forEach>
+	            	<c:forEach var="dto" items="${recentList}">
+		                <div class="col-lg-4 col-sm-6" style="height: 500px;">
+		                    <div class="single_ihotel_list" style="border-bottom: none;">
+		                        <img src="${dto.f_image}" alt="" style="width: 400px; height: 300px;">
+		                        <div class="hotel_text_iner">
+		                            <h3><a href="javascript:read('${dto.f_id}')">${dto.f_title}</a></h3>
+		                            <div class="place_review">
+		                                <a href="#"><i class="fas fa-star"></i></a>
+		                                <a href="#"><i class="fas fa-star"></i></a>
+		                                <a href="#"><i class="fas fa-star"></i></a>
+		                                <a href="#"><i class="fas fa-star"></i></a>
+		                                <a href="#"><i class="fas fa-star"></i></a>
+		                                <span>(210 review)</span>
+		                            </div>
+		                            <p>${dto.f_address}</p>
+		                            <h5>From <span>${dto.f_price} 원</span></h5>
+		                        </div>
+		                    </div>
+		                </div>
+	            	</c:forEach>
             </div>
         </div>
     </section>
     <!--::industries end::-->
 
     <!--top place start-->
-    <section class="client_review section_padding">
-        <div class="container">
-            <div class="row ">
-                <div class="col-xl-6">
-                    <div class="section_tittle">
-                        <h2>후기</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="client_review_slider owl-carousel">
-                        <div class="single_review_slider">
-                            <div class="place_review">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                            </div>
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
-                            <h5> - Allen Miller</h5>
-                        </div>
-                        <div class="single_review_slider">
-                            <div class="place_review">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                            </div>
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
-                            <h5> - Allen Miller</h5>
-                        </div>
-                        <div class="single_review_slider">
-                            <div class="place_review">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                            </div>
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
-                            <h5> - Allen Miller</h5>
-                        </div>
-                        <div class="single_review_slider">
-                            <div class="place_review">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                            </div>
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
-                            <h5> - Allen Miller</h5>
-                        </div>
-                        <div class="single_review_slider">
-                            <div class="place_review">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                            </div>
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
-                            <h5> - Allen Miller</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--     <section class="client_review section_padding"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row "> -->
+<!--                 <div class="col-xl-6"> -->
+<!--                     <div class="section_tittle"> -->
+<!--                         <h2>후기</h2> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="row"> -->
+<!--                 <div class="col-lg-12"> -->
+<!--                     <div class="client_review_slider owl-carousel"> -->
+<!--                         <div class="single_review_slider"> -->
+<!--                             <div class="place_review"> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                             </div> -->
+<!--                             <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p> -->
+<!--                             <h5> - Allen Miller</h5> -->
+<!--                         </div> -->
+<!--                         <div class="single_review_slider"> -->
+<!--                             <div class="place_review"> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                             </div> -->
+<!--                             <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p> -->
+<!--                             <h5> - Allen Miller</h5> -->
+<!--                         </div> -->
+<!--                         <div class="single_review_slider"> -->
+<!--                             <div class="place_review"> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                             </div> -->
+<!--                             <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p> -->
+<!--                             <h5> - Allen Miller</h5> -->
+<!--                         </div> -->
+<!--                         <div class="single_review_slider"> -->
+<!--                             <div class="place_review"> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                             </div> -->
+<!--                             <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p> -->
+<!--                             <h5> - Allen Miller</h5> -->
+<!--                         </div> -->
+<!--                         <div class="single_review_slider"> -->
+<!--                             <div class="place_review"> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                                 <a href="#"><i class="fas fa-star"></i></a> -->
+<!--                             </div> -->
+<!--                             <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p> -->
+<!--                             <h5> - Allen Miller</h5> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
     <!--top place end-->
 
     <!-- jquery plugins here-->
@@ -361,34 +380,6 @@
     <script src="${root}/festival/list/js/contact.js"></script>
     <!-- custom js -->
     <script src="${root}/festival/list/js/custom.js"></script>
-    <script>
-    	function enrollFestival(){
-			$.ajax({
-				url:"./tour/api/list/allCreate",
-				type:"get",
-				contentType : "application/json; charset=utf-8",
-				success: function(data){
-					console.log("success");
-				},
-				error: function(data){
-					console.log("fail");
-				}
-			});    		
-    	}
-    	function enrollFestivalDetail(){
-			$.ajax({
-				url:"./tour/api/list/detailCreate",
-				type:"get",
-				contentType : "application/json; charset=utf-8",
-				success: function(data){
-					console.log("success");
-				},
-				error: function(data){
-					console.log("fail");
-				}
-			});    		
-    	}
-    </script>
     <script>
     	function read(id){
     		var url = 'read';

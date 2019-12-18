@@ -256,7 +256,7 @@
  * 레이아웃 정의
 **/
   body { font-weight:200; font-size:15px; letter-spacing:-0.05em; word-break:keep-all; }
-  #mast-body .container { margin:0 auto; padding:70px 0; max-width:1100px; }
+  #mast-body .container { margin:0 auto; padding:0 0; max-width:1100px; }
   #mast-head > .container,
   #mast-foot > .container { margin:0 auto; max-width:1100px; }
   #mast-head { height:80px; border-bottom:1px solid #ebebeb; }

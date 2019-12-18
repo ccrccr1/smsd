@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문</title>
-<link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${root}/css/top.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/reset.css">
 </head>
 <body>
 	<div class="footer">

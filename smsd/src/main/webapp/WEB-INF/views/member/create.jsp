@@ -5,12 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="${root }/css/createcss/information.css" />
 <link rel="stylesheet"
 	href="${root }/css/createcss/layout.css" />
-
+<style type="text/css">
+	.wrapper{
+		height: 1000px;
+		
+	}
+</style>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	function sample6_execDaumPostcode() {
@@ -200,7 +206,7 @@
 									<div class="form-wrap __normal __x1">
 										<div class="inner">
 											<div class="ui-input">
-												<input type="text" id="m_email" name="m_email" 
+												<input type="email" id="m_email" name="m_email" 
 													title="이메일주소"> <label for="m_email"></label>
 											</div>
 											<button type="button" id="dupChkBtn" name="dupChkBtn" onclick="emailcheck(document.frm.m_email.value)"

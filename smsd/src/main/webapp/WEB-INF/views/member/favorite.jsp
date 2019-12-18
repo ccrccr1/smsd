@@ -30,6 +30,10 @@
 		border-radius: 15px;
 		border: none;
 	}
+	.wrapper2{
+		width: 1100px;
+		margin: 0 auto;
+	}
 </style>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -148,7 +152,7 @@ function deleteAction(){
 </head>
 <body>
 	
-	<div class="wrapper">
+	<div class="wrapper2">
 		<h1 style="font-size: 250%">즐겨찾기</h1>
 		<br>
 		<table style="width: 100%; align-content: center; ">

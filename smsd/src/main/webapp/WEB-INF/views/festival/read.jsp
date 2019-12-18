@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="${root}/festival/read/css/flaticon.css">
     <link rel="stylesheet" href="${root}/festival/read/css/icomoon.css">
     <link rel="stylesheet" href="${root}/festival/read/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/review.css">
+    
     <style>
 	.btn_1{
 		margin-top: 60px;
@@ -36,7 +38,88 @@
 	    background-color: #fe5c24;
 	    font-weight: 500;	
 	}
-    </style>
+	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> modal css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+#mtest2{
+
+	display : none;
+	border: 1px solid #888;
+	width: 860px;
+	height: 560px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed; /* Stay in place */
+	z-index: 2;/* Sit on top */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #fefefe;
+}
+#mclose {
+	color: #aaa;
+	margin-top: 7px;
+	margin-right: 15px;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+#mtest{
+
+	display : none;
+	border: 1px solid #888;
+	width: 820px;
+	height: 520px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed; /* Stay in place */
+	z-index: 2;/* Sit on top */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #fefefe;
+}
+#pclose {
+	color: #aaa;
+	margin-top: 7px;
+	margin-right: 15px;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+
+#mclose:hover, #mclose:focus, #pclose:hover, #pclose:focus{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal_header {
+	font-size: 25px;
+	font-weight: bold;
+	padding: 10px;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.modalContent {
+	padding: 10px;
+}
+#modal_img{
+	padding : 20px;
+	width: 700px;
+	height: 500px; 
+}
+
+#test2, #test3{
+	border-radius: 5px;
+	border: 1px solid #d9e0e6;
+}
+#test2{
+	margin-right: 10px;
+}
+
+</style>
+    
+    
   </head>
   <body>    
     <div class="hero-wrap js-fullheight" style="background-image: url('${read.f_image}');" data-stellar-background-ratio="0.5">
@@ -150,25 +233,7 @@
 		                <strong class="number" data-number="${read.f_cnt }">0</strong>
 		              </div>
 		            </div>
-		          </div>
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-5 bg-light mb-4">
-		              <div class="text">
-						<p>참여 인원</p>
-						<br>		                
-		                <strong class="number" data-number="200">0</strong>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-5 bg-light mb-4">
-		              <div class="text">
-		              	<p>후기</p>
-		              	<br>
-		                <strong class="number" data-number="2500">0</strong>
-		              </div>
-		            </div>
-		          </div>
+		          </div>	
 		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center py-5 bg-light mb-4">
 		              <div class="text">
@@ -183,82 +248,290 @@
         </div>
     	</div>
     </section>
-
-    <section class="ftco-section bg-light">
-      <div class="container">
+<section class="ftco-section bg-light">
+    <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>후기</h2>
           </div>
         </div>
         <a style="float: right;" href="javascript:review('${read.f_id}')">>></a>
-            
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="blog-single.html" class="block-20" style="background-image: url('festival/read/images/image_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center pt-2 mb-4 topp">
-              		<div class="one">
-              			<span class="day">12</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">February</span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="blog-single.html" class="block-20" style="background-image: url('festival/read/images/image_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center pt-2 mb-4 topp">
-              		<div class="one">
-              			<span class="day">12</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">February</span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="blog-single.html" class="block-20" style="background-image: url('festival/read/images/image_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center pt-2 mb-4 topp">
-              		<div class="one">
-              			<span class="day">12</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">February</span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        
+        
+        <div class="container" style="width: 100%">
+		<div class="wrapper">
+		<div class="review_top">
+			<h3 class="review_title">구매후기(${cnt})</h3>
+	
+			
+			<div id="mtest">
+				<div><span id="pclose">&times;</span></div>
+				<div class="modalContent">
+					<img id="modal_img">
+					</div>
+			</div>
+
+<!--------------------------------------------------------  modal  -------------------------------------------------------------------------->
+
+		<div id="mtest2">
+			<div><span id="mclose">&times;</span></div>
+			<div class="modal_header">Update Review !!!! </div>
+			<div class="modalContent">			
+			
+			<form   name = "frm"
+					action = "read/update"
+					method = "post"
+					enctype = "multipart/form-data">
+
+ 				<input type="hidden" name="u_oldfile" id="modal_oldfile">
+				<input type="hidden" name="r_no" id="modal_r_no">
+				<input type="hidden" name="f_id" value="${f_id}">
+				
+				<div>
+					<div style="display: inline-block; width: 100%;">
+						<div class="u_notice"> <span id="s">****</span> 리뷰 수정 시 사진 업로드를 다시 해주세요 ! <span id="s">****</span></div>
+						<div id="u_oldfile"></div>	
+					</div>
+					<div>
+						<input class="u_review_t" placeholder="제목 : " name="u_title" id = "u_title">
+						<div class="ufile">
+						<label for="u_file">업로드</label>			
+						<input type="file" id="u_file" name="r_fileMF" accept=".jpg,.gif,.png" multiple="multiple" style="margin-top: 10px;">
+				</div>
+					</div>
+				</div>
+				<textarea class="u_review_box" rows="7" cols="100%" name="u_content" id="u_content"></textarea>
+				
+				<div class="review_box2">
+					<!-- <div class="review_star">★★★★ 아주 좋아요</div> -->
+					<div class="form-group" >
+						<select class="form-control" id="u_star" name="u_star">
+							<option value="5">★★★★★  아주 좋아요</option>
+							<option value="4">★★★★☆  맘에 들어요</option>
+							<option value="3">★★★☆☆  보통 이에요</option>
+							<option value="2">★★☆☆☆  그냥 그래요</option>
+							<option value="1">★☆☆☆☆  별로 ㅠㅠㅠ</option>
+						</select>					
+					</div>
+				</div>
+				
+				
+				<div style="width:100%; height:100%; text-align: center;">
+					<button class="btn btn-default" type="submit" id="u_updatebtn" >확인</button>
+					<button class="btn btn-default" type="reset"  id="u_updateresetbtn" >취소</button>			
+				</div>
+	 		</form>
+			</div>
+		</div>
+<!-------------------------------------------------------- / modal  -------------------------------------------------------------------------->
+
+		<form   name = "frm"
+				action = "read/create"
+				method = "post"
+				enctype = "multipart/form-data"
+				onsubmit = "return checkid(this)"
+				accept-charset="UTF-8">
+		
+		
+		<%-- <input type="hidden" name="f_id" value="${dto.f_id}"> --%>
+		<input type="hidden" name="r_oldfile" value="${dto.r_file}">
+		<input type="hidden" name="f_id" value="${f_id}">
+
+
+		<div style="margin-bottom: 10px;">
+			<input class="review_t" placeholder="제목 : " name="r_title" id = "r_title">
+			<div class="filebox"><label for="r_file">파일첨부</label><input type="file" id="r_file" name="r_fileMF" accept=".jpg,.gif,.png" multiple="multiple"></div>
+		</div>
+
+<textarea class="review_box" rows="7" cols="100%" name="r_content" id="r_content"  onclick="this.value='';">
+* 리뷰 작성 시 적립금 최대 10,000원 지급 ! *
+- 텍스트 리뷰 : 축제당 500원 지급
+- 포토리뷰 : 축제당 1,000지급
+- 베스트리뷰 : 상시 선정! 베스트 리뷰 10,000원 지급 !!
+</textarea>
+			<div class="review_box2">
+				<!-- <div class="review_star">★★★★ 아주 좋아요</div> -->
+				<div class="form-group" >
+					<select class="form-control" id="r_star" name="r_star">
+						<option value="5">★★★★★  아주 좋아요</option>
+						<option value="4">★★★★☆  맘에 들어요</option>
+						<option value="3">★★★☆☆  보통 이에요</option>
+						<option value="2">★★☆☆☆  그냥 그래요</option>
+						<option value="1">★☆☆☆☆  별로 ㅠㅠㅠ</option>
+					</select>
+				<button class="btn btn-default" id="createbtn" style="float: right;" type="submit">
+				<%-- <img class="check" src="${pageContext.request.contextPath}/image/check.jpg">
+				 --%>후기 등록하기
+				</button>					
+				</div>
+			</div>
+		</form>
+			
+	</div><!-- /review_top -->
+	
+		
+		<div class="review_content">
+ 			<c:choose>
+					<c:when test="${empty rlist}">
+							<tr><td colspan="2">등록된 후기가 없습니다.</td></tr>
+					</c:when>
+								
+					<c:otherwise>
+						<c:forEach var="dto" items="${rlist}"> 
+								<div class="review_content">
+									<div class="c_title" id="c_title${dto.r_no}">${dto.r_title}
+									<c:forEach begin="1" end="${dto.r_star}">★</c:forEach>
+									</div>
+									<div class="c_content" id="c_content${dto.r_no}">
+										<c:choose>
+											<c:when test="${empty dto.r_file }">
+												${dto.r_content}
+											</c:when>
+											<c:otherwise>			
+												<img class="review_file" id="pic" src="${pageContext.request.contextPath}/storage/${dto.r_file}">								
+												<br>${dto.r_content}								
+											</c:otherwise>
+										</c:choose>		
+									</div>
+									<div class="c_d">${dto.m_id} / ${dto.r_date} </div>
+									<c:if test="${sessionScope.id == dto.m_id}">
+									<div class="c_d"><button class="btn btn-default" id="test2" onclick="modal_update('${dto.r_no}','${dto.r_file}')">수정</button><button class="btn btn-default" id="test3" type="button" onclick="review_delete('${dto.r_no}','${dto.r_file}')">삭제</button></div>		
+									</c:if>
+								</div>
+ 						</c:forEach>	
+					</c:otherwise>
+				</c:choose>
+
+		</div><!-- /review_content -->
+
+	</div>
+</div>
+
+
+   </div>
+   </section>
 
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+	
+  
+  <script type="text/javascript">
 
+	function checkid(f){
+		
+		if(f.r_title.value.length==0){
+			alert("제목을 입력하세요");
+			f.r_title.focus();
+			return false;
+		}
+		if(f.r_content.value.length==0){
+			alert("내용을 입력하세요");
+			f.r_content.focus();
+			return false;
+		}
+
+		if('${sessionScope.id}' == ''){
+			alert("로그인이 필요합니다.");
+		
+			var url = "login";
+	        location.href = url;
+	        
+			return false;
+		}
+	}
+	
+	function review_delete(r_no, r_file){
+		
+		if(confirm("게시글을 삭제하시겠습니까? ")){
+			
+			var url = "read/delete";
+			url += "?r_no="+r_no;
+			url += "&f_id=${f_id}";
+			url += "&oldfile="+r_file;
+			
+			location.href = url;
+			}
+	}
+
+
+	</script>
+  <script type="text/javascript">
+	
+	function modal_update(r_no, f){
+		
+		
+		var title = document.getElementById('c_title'+r_no).innerHTML;
+		var star = title.substring(title.indexOf("★"), title.lastIndexOf("★")+1);
+		var c_title = title.substring(0, title.indexOf("★"));
+		var t_title = c_title.trim();
+		
+		var content = document.getElementById('c_content'+r_no).innerHTML
+		var c_content = content.substring(content.indexOf(">")+1);
+		var t_content = c_content.trim();
+
+		var oldfile2 = f;
+		
+		$('#modal_r_no').val(r_no);
+		$('#modal_oldfile').val(oldfile2);
+	
+		$('#u_title').val(t_title);
+		document.getElementById('u_content').innerHTML = t_content;
+		
+		$('#u_star').val(star.length).prop("selected",true);
+		
+
+		
+		$('#mtest2').show();
+	}
+
+ $(function(){
+
+	 $('#mclose').click(function (e){
+			e.preventDefault();
+			$('#mtest2').hide();
+	 });
+	 
+	 $('#u_updateresetbtn').click(function (e) {
+			e.preventDefault();
+			$('#mtest2').hide();
+	 });
+	 
+	 $('#ptest').click(function (e){ 
+		 var msrc = jQuery('#ptest').attr("src");
+		 jQuery("#modal_img").attr("src", msrc);
+		 $('#mtest').show();
+	 })
+
+	 $('#pclose').click(function (e){
+			e.preventDefault();
+			$('#mtest').hide();
+	 });
+	 
+ 
+         $("#pic").click(function(){
+             if($(this).hasClass("review_file")){
+                 $("#pic").addClass("review_file_large") ;
+                 $("#pic").removeClass("review_file") ;
+                
+             }
+             else{
+                 $("#pic").addClass("review_file") ;
+                 $("#pic").removeClass("review_file_large") ;               
+             }
+         });
+
+
+
+  });
+</script>
+        
+  
   <script type="text/javascript">
   	function review(f_id){
-  		var url = "review";
+  		var url = "${root}/review";
   		url += "?f_id="+f_id;
   		
   		location.href=url;
@@ -303,6 +576,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="${root}/festival/read/js/google-map.js"></script>
   <script src="${root}/festival/read/js/main.js"></script>
-    
-  </body>
+    </body>
 </html>

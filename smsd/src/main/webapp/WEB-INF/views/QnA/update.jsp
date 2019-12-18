@@ -40,7 +40,12 @@
 	   		CKEDITOR.replace('q_content');  // <TEXTAREA>태그 id 값
 		};
 	</script>
-
+	
+	<style type="text/css">
+	.wrapper{
+		height: 1050px;
+	}
+</style>
 </head>
 <body>
 

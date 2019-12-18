@@ -51,7 +51,7 @@ public class BoardReplyController {
 		String url = "read";
 		int recordPerPage = 3;
 		
-		String paging = Utility.rpaging(total, nowPage, recordPerPage, col, word, url, nPage, b_no);
+		String paging = Utility.reviewpaging(total, nowPage, recordPerPage, col, word, url, nPage, b_no);
 		
 		return new ResponseEntity<String>(paging, HttpStatus.OK);		
 	}

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <style type="text/css">
 /* The Modal (background) */
 .modal {
@@ -66,9 +67,31 @@ $(function() {
 	        });
 	      }
 	    });
+	});
+
+</script>
+<script type="text/javascript">
+$(function() {
 	 
 	
-	 
+
+	    $(".close").click(function() {
+	      $("#festivalModal").css({
+	        "display": "none"
+	      });
+	    });
+	    $("#updateFestival").click(function() {
+		      $("#festivalModal").css({
+		        "display": "block"
+		      });
+		    });
+		    $("html").click(function(event) {
+		      if (event.target.id === "festivalModal") {
+		        $("#festivalModal").css({
+		          "display": "none"
+		        });
+		      }
+		    });
 	});
 
 </script>
@@ -108,7 +131,7 @@ $(function() {
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" style="height: 1000px;">
 		<!-- mast head start -->
 		<div id="mast-head">
 			<div class="container">
@@ -283,12 +306,14 @@ $(function() {
 						<button type="button" class="ui-button __square-large __blue"
 						 name="updatepasswd" id="updatepasswd">비밀번호 수정</button>
 						<button type="button" class="ui-button __square-large __black"
-						onclick="history.back()">거래내역</button>
+						onclick="location.href='${root}/order/list'">거래내역</button>
 						<button type="button" class="ui-button __square-large __black"
 						onclick="location.href='${root}/favorite'">즐겨찾기</button>
 						<button type="button" class="ui-button __square-large __black"
 						onclick="location.href='${root}/iwrite?m_id=${sessionScope.id}'">내가 쓴 글</button>
-					
+					<c:if test="${sessionScope.id =='admin'}">
+						<button type="button" class="ui-button __square-large __black" id="updateFestival" name="updateFestival">축제 최신화</button>
+					</c:if>
 						
 					</div>
 				</div>
@@ -322,6 +347,32 @@ $(function() {
 				</div>
 			</div>
 	
+      </div>
+      </div>
+    <div id="festivalModal" class="modal">
+ 
+      <!-- Modal content -->
+        
+      <div class="modal-content">
+        <span class="close">&times;</span>    
+                                                                
+			<div id="divOnlId" class="form-horizontal">
+				<div class="col-md">
+					<label style="color: #8a8a8a; line-height: 34px; padding-right: 10px;" for="update_date">축제 기간</label>
+					</div>
+					<div class="col-sm-2">
+					<div class="form-wrap __normal __x1">
+						<div class="ui-input">
+						<input type="date" id="update_sdate" name="update_sdate" title="축제 시작 날짜">
+						</div>
+						<div class="ui-input">
+						<input type="date" id="update_edate" name="update_edate" title="축제 종료 날짜">
+						</div>
+						<button type="button" id="updatemoney" name="updatemoney" 
+						class="ui-button __square-small __black" title="출전버튼" onclick="enrollFestival()">최신화하기</button>										
+					</div>
+				</div>
+			</div>
       </div>
       </div>
       </form>
@@ -369,6 +420,43 @@ $(function() {
     </div>
     	</form>
 </body>
+    <script>
+    	function enrollFestival(){
+    		var sdate = $("#update_sdate").val();
+    		var edate = $("#update_edate").val();
+			var aaa = {"f_sdate":sdate,"f_date":edate};
+    		$.ajax({
+				url:"${root}/tour/api/list/allCreate",
+				type:"post",
+				data: JSON.stringify(aaa),
+				contentType : "application/json; charset=utf-8",
+				success: function(data){
+					alert("success");
+					console.log("success");
+					/* enrollFestivalDetail() ;*/
+				},
+				error: function(request, status, error){
+					alert("에러1 " + request);
+					alert("에러2 " + status);
+					alert("에러3 " + error);
+					console.log("fail");
+				}
+			});    		
+    	}
+    	function enrollFestivalDetail(){
+			$.ajax({
+				url:"./tour/api/list/detailCreate",
+				type:"get",
+				contentType : "application/json; charset=utf-8",
+				success: function(data){
+					console.log("success");
+				},
+				error: function(data){
+					console.log("fail");
+				}
+			});    		
+    	}
+    </script>
 <script type="text/javascript">
 function inCheck(f) {
 if (f.m_passwd.value.length == 0) {

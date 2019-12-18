@@ -119,6 +119,9 @@ function order_insert(){
 
 </script>
 <style type="text/css">
+	.wrapper{
+		height: 1200px;
+	}
 	.order_head{
 		font-size: 30px;
 		font-weight: 700;

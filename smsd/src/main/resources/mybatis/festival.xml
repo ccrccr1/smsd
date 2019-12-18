@@ -103,7 +103,7 @@
 		    select f_id, f_title, f_area, f_address, f_sdate, f_edate, f_cnt, f_price, rownum r
 		    from festival
 		    <![CDATA[
-			    where f_sdate >= #{sdate} and f_edate <= #{edate}
+			    where f_sdate >= #{sdate} and f_edate <= #{edate} and f_edate >= sysdate
 		    ]]>
 		    order by f_sdate desc
 		) 
@@ -121,7 +121,7 @@
 			where r <= 12
 		]]>
 	</select>
-	
+
 	<delete id="optimize">
 		delete from festival
 		where f_id not in (
@@ -164,4 +164,9 @@
 	    using(f_id)
 	    where f_id = #{id}
 	</select>
+	<update id="upViewCnt" parameterType="int">
+		update festival
+		set f_cnt = f_cnt+1
+		where f_id = #{id}
+	</update>
 </mapper>

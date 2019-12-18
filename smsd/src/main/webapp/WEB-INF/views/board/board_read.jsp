@@ -76,14 +76,31 @@
 	<style type="text/css">
 		.table{
 			word-break : break-all; 
+			width: 100%;
 			
 		}
 		.b_img{
-			width: 70%; height: 80%;
+			width: 50%; height: 70%;
 			margin: 30px;
 		}
 		#t-td{
 			padding: 20px;
+		}
+		.h1{
+			font-size: 250%;
+			font-weight: bold;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+			color: #666;
+			border-bottom: 2px solid #ccc;
+			text-height: 200%;
+			padding: 10px;
+			letter-spacing: 1px;
+			word-spacing: 3px;
+			margin-bottom: 20px;
+			margin-right: 50px;
+	}
+		.wrapper{
+			height: 1200px;	
 		}
 	</style>
 	
@@ -95,23 +112,13 @@
 		<!-- mast head start -->
 		<div id="mast-head">
 			<div class="container">
-				<h1 class="title" id="mastHeadTitle">모임 게시판</h1>
+				<h1 class="h1">모임게시판</h1>
 			</div>
 		</div>
 	
 		<!-- mast head end -->
 		
-			<div id="infoDiv" style="">
-				<div class="container">
-					<div class="section __half __zero __wide">
-						<h3 class="subject __underline">
-						<br><br>
-							<em>게시판 상세정보</em>
-						</h3>
-						
-					</div>
-				</div>
-			</div>
+
 			<div>
 			<table class="table">
 			<thead>
@@ -131,7 +138,7 @@
 						</c:when>
 						<c:otherwise>										
 							<img class="b_img" src="${pageContext.request.contextPath}/storage/${dto.b_filename}">
-							${dto.b_content}								
+							<br>${dto.b_content}								
 						</c:otherwise>
 					</c:choose>	
 					</td>
@@ -154,18 +161,18 @@
 
 
 			
-			<div class="section __half __center">
+			<div style="text-align: center; margin-bottom: 30px;">
 			
 
 			<c:if test="${sessionScope.id == dto.m_id}">
 								
-				<button type="button" class="ui-button __square-large __black" onclick="updateb()">수정</button>
-				<button type="button" class="ui-button __square-large __black" onclick="deleteb()">삭제</button>
+				<button type="button" class="btn btn-default" onclick="updateb()">수정</button>
+				<button type="button" class="btn btn-default" onclick="deleteb()">삭제</button>
 				
 			</c:if>
 
-			<button type="button" class="ui-button __square-large __black" onclick="replyb()">답변</button>
-			<button type="button" class="ui-button __square-large __black" onclick="listb()">목록</button>
+			<button type="button" class="btn btn-default" onclick="replyb()">답변</button>
+			<button type="button" class="btn btn-default" onclick="listb()">목록</button>
 			
 			<br><br>
 
@@ -187,8 +194,8 @@
 							<li class="left clearfix" data-br_no="12">
 								<div>
 									<div class="header">
-										<strong class="primary-font">${dto.m_id}</strong> 
-										<small class="pull-right text-muted">2019-05-12</small>
+										<strong class="primary-font"></strong> 
+										<small class="pull-right text-muted"></small>
 									</div>
 									<p>댓글을 입력하세요.</p>
 

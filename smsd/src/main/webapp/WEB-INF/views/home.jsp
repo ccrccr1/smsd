@@ -93,16 +93,17 @@ $(function(){
 		margin: 0 auto;
 		text-align: center;
 		display: flex;
+		
 	}
 	.spring{
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/spring2.jpg");
+		background-image: url("image/spring.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
-}
+	}
 	.spring_h1{
 		font-size: 30px;
 		margin-bottom: 50px;
@@ -118,11 +119,11 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/summer2.jpg");
+		background-image: url("image/summer.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
-}
+	}
 	.summer_h1{
 		font-size: 30px;
 		margin-bottom: 50px;
@@ -160,7 +161,7 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/3.png");
+		background-image: url("image/winter.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
@@ -192,40 +193,16 @@ $(function(){
 	<div class="container">
 		<div class="wrapper">
 			<div class="spring">
-				<div class="spring_text">
-					<h1 class="spring_h1">봄</h1>
-				</div>
 				
-				<div class="spring_logo">
-					<h2 class="spring_h2">바로가기</h2>
-				</div>
 			</div>
 			<div class="summer">
-				<div class="summer_text">
-					<h1 class="summer_h1">여름</h1>
-				</div>
-				
-				<div class="summer_logo">
-					<h2 class="summer_h2">바로가기</h2>
-				</div>
-			
+
 			</div>
 			<div class="fall">
-				<div class="fall_text">
-					<h1 class="fall_h1">가을</h1>
-				</div>
-				
-				<div class="fall_logo">
-					<h2 class="fall_h2">바로가기</h2>
-				</div>
+	
 			</div>
 			<div class="winter" >
-				<div class="winter_text">
-					<h1 class="winter_h1">겨울</h1>
-				</div>
-				<div class="winter_logo">
-					<h2 class="winter_h2">바로가기</h2>
-				</div>
+	
 			</div>
 		</div>
 	</div>

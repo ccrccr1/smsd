@@ -11,7 +11,7 @@
 	}
 	.container{
 		text-align: center;
-		padding: 200px 0;
+		padding: 300px 0;
 	}
 	.well{
 		margin-bottom: 20px;

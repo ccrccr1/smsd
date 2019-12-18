@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>모임 게시판 목록</title>
-<!-- 	<link rel="stylesheet" type="text/css" href="../css/board.css"> -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+	<title>모임 게시판</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../css/board.css"> -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script type="text/javascript">
 	function read(b_no){
 		var url = "read";
@@ -20,6 +20,25 @@
 		location.href=url;
 	}
 	</script>
+	
+	<style type="text/css">
+	.h1{
+		font-size: 250%;
+		font-weight: bold;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+		color: #666;
+		border-bottom: 2px solid #ccc;
+		text-height: 200%;
+		padding: 10px;
+		letter-spacing: 1px;
+		word-spacing: 3px;
+		margin-bottom: 20px;
+		margin-right: 50px;
+	}
+	.table{
+		width: 100%;
+	}
+	</style>
 
 	
 </head>
@@ -30,39 +49,24 @@
 			<!-- mast head start -->
 			<div id="mast-head">
 				<div class="container">
-					<h1 class="title" id="mastHeadTitle">모임 게시판</h1>
+					<h1 class="h1">모임게시판</h1>
 				</div>
 			</div>
 
 			<!-- mast head end -->
 
-					<div id="infoDiv" style="">
-						<div class="container">
-							<div class="section __half __zero __wide">
-								<h3 class="subject __underline">
-									<br><br>
-									<em>게시판 목록</em>
-								</h3>
-								<!-- <div class="form-group">
-									<select class="form-control" name="col">
-										<option value="">최근등록순</option>
-										<option value="">조회순</option>
-									</select>
-								</div>
- -->
-							</div>
-						</div>
-					
+					<div id="infoDiv">
+
 
 					<table class="table">
 
 						<thead>
-							<tr >
-								<th style="width: 20px; display: table-cell; vertical-align: middle;">번호</th>
-								<th style="width: 400px;  display: table-cell; vertical-align: middle; text-align: center;">제목</th>								
-								<th style="width: 70px; display: table-cell; vertical-align: middle;">작성자</th>
-								<th style="width: 100px; display: table-cell; vertical-align: middle; ">작성일</th>
-								<th style="width: 30px; display: table-cell; vertical-align: middle;">조회수</th>
+							<tr>
+								<th style="width: 10%; display: table-cell; vertical-align: middle;">번호</th>
+								<th style="width: 50%;  display: table-cell; vertical-align: middle; text-align: center;">제목</th>								
+								<th style="width: 15%; display: table-cell; vertical-align: middle;">작성자</th>
+								<th style="width: 15%; display: table-cell; vertical-align: middle; ">작성일</th>
+								<th style="width: 10%; display: table-cell; vertical-align: middle;">조회수</th>
 							</tr>
 						</thead>
 
@@ -76,8 +80,8 @@
 									<c:forEach var="dto" items="${list}">
 									<tr>
 									
-										<td style="display: table-cell; vertical-align: middle;" >${dto.b_no}</td>
-										<td style="text-align: left; display: table-cell; vertical-align: middle;" >
+										<td style="display: table-cell; vertical-align: middle; width: 10%;" >${dto.b_no}</td>
+										<td style="text-align: left; display: table-cell; vertical-align: middle; width: 50%" >
 											
 											<c:forEach begin="1" end="${dto.b_indent }">
 											&nbsp;&nbsp;
@@ -101,9 +105,9 @@
 												<img src="${pageContext.request.contextPath}/image/new.gif">
 											</c:if>		
 										</td>
-										<td style="display: table-cell; vertical-align: middle;">${dto.m_id}</td>
-										<td style="display: table-cell; vertical-align: middle;">${dto.b_date}</td>
-										<td style="display: table-cell; vertical-align: middle;">${dto.b_cnt}</td>
+										<td style="display: table-cell; vertical-align: middle; width: 15% ">${dto.m_id}</td>
+										<td style="display: table-cell; vertical-align: middle; width: 15% ">${dto.b_date}</td>
+										<td style="display: table-cell; vertical-align: middle; width: 10% ">${dto.b_cnt}</td>
 									</tr>
 									</c:forEach>
 									
@@ -145,8 +149,8 @@
 					<input type="text" class="form-control" placeholder="검색" name="word" value="${word}" style="width: 60%; margin-left: 5px;">
 					
 					<div style="margin-top: 20px;">					
-					<button type="submit" class="ui-button __square-large __black" style="margin-right: 5px;">검색</button>	
-					<button type="button" class="ui-button __square-large __black" onclick="location.href='create'">등록</button>	
+					<button type="submit" class="btn btn-default" style="margin-right: 5px;">검색</button>	
+					<button type="button" class="btn btn-default" onclick="location.href='create'">등록</button>	
 					</div>
 			
 				</div>

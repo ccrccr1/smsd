@@ -42,14 +42,15 @@ public class BoardController {
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
 		List<ReviewDTO> list = rmapper.list(f_id);
 		
-		int cnt = rmapper.total(f_id);
+		int cnt = rmapper.total(f_id);		
 		
 		request.setAttribute("cnt", cnt);
 		request.setAttribute("f_id", f_id);
 		request.setAttribute("list", list);
 		return "/review";
 	}
-	@GetMapping("/review/delete")
+
+	@GetMapping("/festival/read/delete")
 	public String deleteR(int r_no, String oldfile, HttpServletRequest request, Model model) {
 				
 		rmapper.delete(r_no);
@@ -57,16 +58,18 @@ public class BoardController {
 		Utility.deleteFile(basePath, oldfile);
 		
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
-		model.addAttribute("f_id", f_id);
-		System.out.println("f_idaaaaa");
+		model.addAttribute("id", f_id);
 
-		return "redirect:/review";
+		return "redirect:/festival/read";
 	}
-	@PostMapping("/review/create")
+	@PostMapping("/festival/read/create")
 	public String create(HttpServletRequest request, HttpSession session, ReviewDTO dto, Model model) {
 		
 		int r_star = Integer.parseInt(request.getParameter("r_star"));
 		int f_id = Integer.parseInt(request.getParameter("f_id"));
+		
+		String content = dto.getR_content().replaceAll("\r\n", "<br>");
+		dto.setR_content(content);
 		
 		dto.setR_star(r_star);
 		dto.setM_id((String) session.getAttribute("id"));
@@ -78,11 +81,11 @@ public class BoardController {
 		}
 
 		rmapper.create(dto);
-		model.addAttribute("f_id", f_id);
+		model.addAttribute("id", f_id);
 		
-		return "redirect:/review";
+		return "redirect:/festival/read";
 	}
-	@PostMapping("/review/update")
+	@PostMapping("/festival/read/update")
 	public String update(HttpServletRequest request, HttpSession session, ReviewDTO dto, String u_oldfile, Model model, String f_id) {
 		
 		dto.setR_title(request.getParameter("u_title"));
@@ -91,7 +94,6 @@ public class BoardController {
 		
 		int r_star = Integer.parseInt(request.getParameter("u_star"));
 		dto.setR_star(r_star);
-		
 		
 		String basePath = request.getRealPath("/storage");
 		if(dto.getR_fileMF().getSize()>0 ) {
@@ -105,10 +107,9 @@ public class BoardController {
 			System.out.println("실패");
 		};
 
-		model.addAttribute("f_id", f_id);		
-		System.out.println("f_id>>>>>>>" + f_id);
+		model.addAttribute("id", f_id);	
 		
-		return "redirect:/review";
+		return "redirect:/festival/read";
 	}
 	
 

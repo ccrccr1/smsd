@@ -16,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import spring.model.festival.FestivalDTO;
+import spring.model.festival.ReviewDTO;
 import spring.model.mapper.FestivalMapper;
+import spring.model.mapper.ReviewMapper;
 import spring.utility.smsd.Utility;
 
 @Controller
@@ -24,15 +26,28 @@ public class FestivalController {
 
 	@Autowired
 	private FestivalMapper mapper;
+	@Autowired
+	private ReviewMapper rmapper;
 	
 	@GetMapping("/festival/read")
 	public String read(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
+		mapper.upViewCnt(id);
 		List<FestivalDTO> imageList = mapper.readFestival(id);
 		FestivalDTO read = imageList.get(0);
 		
 		request.setAttribute("list", imageList);
 		request.setAttribute("read", read);
+		
+		
+		//review
+		List<ReviewDTO> rlist = rmapper.list(id);
+		int cnt = rmapper.total(id);
+		
+		request.setAttribute("cnt", cnt);
+		request.setAttribute("f_id", id);
+		request.setAttribute("rlist", rlist);
+		
 		return "/festival/read";
 	}
 	
@@ -113,11 +128,17 @@ public class FestivalController {
 		map.put("sdate", sdate);
 		map.put("edate", edate);
 		List<FestivalDTO> topList = mapper.topFestivalList(map);
-		List<FestivalDTO> recentList = mapper.recentFestivalList(map);
-
 		Iterator<FestivalDTO> topIter = topList.iterator();
+
+		List<FestivalDTO> recentList = mapper.recentFestivalList(map);
+		
+		boolean isNull = true;
+		if(recentList.size() != 0) {
+			isNull = false;
+		}
 		
 		request.setAttribute("best", topIter.next());
+		request.setAttribute("isNull", isNull);
 		request.setAttribute("isSearch", isSearch);
 		request.setAttribute("topList", topList);
 		request.setAttribute("recentList", recentList);

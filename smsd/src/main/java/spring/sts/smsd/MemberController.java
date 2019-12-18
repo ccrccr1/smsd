@@ -46,11 +46,6 @@ public class MemberController {
 		
 		
 		Iterator<CntDTO> iter = list2.iterator();
-				
-		while(iter.hasNext()) {
-			System.out.println(iter.next());
-		}
-		
 		
 		
 		request.setAttribute("cnt", list);

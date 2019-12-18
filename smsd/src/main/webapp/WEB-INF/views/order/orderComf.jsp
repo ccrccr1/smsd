@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/top.css">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
 <script type="text/javascript">
 	function list(){
 		var url = "./list";

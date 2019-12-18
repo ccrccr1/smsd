@@ -12,6 +12,11 @@
 
 <link rel="stylesheet" type="text/css" href="../css/board.css">
 
+<style type="text/css">
+	.wrapper{
+		height: 1050px;
+	}
+</style>
 
 <script type="text/javascript">
 </script>
@@ -81,7 +86,7 @@
 							<div class="form-wrap __normal __x1">
 								<div class="inner">
 									<div class="ui-input">
-										<input  type="text" id="m_id" name="m_id">
+										<input  type="text" id="m_id" name="m_id" value="${sessionScope.id}" readonly>
 										<label for="m_id"></label>
 									</div>
 								</div>

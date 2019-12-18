@@ -22,6 +22,11 @@ function send(){
 
 
 </script>
+<style type="text/css">
+	.wrapper{
+		height: 1200px;
+	}
+</style>
 <title>Insert title here</title>
 </head>
 <body>

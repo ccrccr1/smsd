@@ -8,239 +8,296 @@
 <title>Insert title here</title>
 
 	<style type="text/css">
+.review_top {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
 
-	.review_top{
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-	.review_title{
-		font-size: 25px;
-		font-weight: bold;
-		padding-bottom: 20px;
-	}
-	.review_t{
-		border: 1px solid #e2e2e2;
-		width: 90%; height : 40px;
-		padding: 10px;
-		margin-bottom : 8px;
-		margin-right : 10px;
-		display: inline-block;
-		float: left;
-	}
-	.review_box, .u_review_box{
-		border: 1px solid #e2e2e2;
-		width: 100%;
-		padding: 20px;
-	}
-	#r_star{
-		width : 80%; height: 40px;
-		margin-top : 8px;
-		border: 1px solid #e2e2e2;
-		padding : 5px 10px 10px 10px;
-		display: inline-block;
-		font-size: 14px;
-	}
-	#createbtn{
-		margin-top : 8px;
-		display: inline-block;
-		border: 1px solid #e2e2e2;
-		padding : 10px 10px 10px 10px;
-		width: 200px;
-		height: 40px;
-		font-size: 15px;
-	}
-	.check{
-		display: inline-block;
-		width: 30px;
-		height: 30px;
-		margin-top: -5px;
-		margin-right: 3px;
-	}
-	.review_content{
-		border-bottom: 1px solid #e2e2e2;
-    	position: relative;
-    	width: 100%;
-    	padding-bottom: 10px;
-    	padding-top: 5px;
-	}
-	.c_title{
-		font-weight: bold;
-    	line-height: 150%;
-    	color: #454545;
-    	display: block;
-    	margin-right: 50px;
-   		margin-bottom: 7px;
-	}
-	.c_content{
-		padding-top : 5px;
-		margin-bottom: 10px;
-	}
-	.review_file{
-		width: 100px;
-		height: 100px;
-		padding-right: 7px;
-		padding-left: 5px;
-	}
-	.c_d{
-		margin-top : 10px;
-		text-align: right;
-	}
-	.filebox label { 
+.review_title {
+	font-size: 30px;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+.review_t {
+	border: 1px solid #e2e2e2;
+	width: 82%;
+	height: 20%;
+	padding: 10px;;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
+
+.review_box, .u_review_box {
+	border: 1px solid #e2e2e2;
+	width: 95%;
+	padding: 20px;
+}
+
+#r_star {
+	width: 80%;
+	height: 40px;
+	margin-top: 8px;
+	border: 1px solid #e2e2e2;
+	padding: 5px 10px 10px 10px;
+	display: inline-block;
+	font-size: 14px;
+}
+
+#createbtn {
+	margin-top: 8px;
+	display: inline-block;
+	border: 1px solid #e2e2e2;
+	padding: 10px 10px 10px 10px;
+	width: 200px;
+	height: 40px;
+	font-size: 15px;
+	background-color: white;
+}
+
+.check {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin-top: -5px;
+	margin-right: 3px;
+}
+
+.review_content {
+	border-bottom: 1px solid #e2e2e2;
+	position: relative;
+	width: 100%;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+.c_title {
+	font-weight: bold;
+	line-height: 150%;
+	color: #454545;
+	display: block;
+	margin-right: 50px;
+	margin-bottom: 7px;
+}
+
+.c_content {
+	padding-top: 5px;
+	margin-bottom: 10px;
+}
+
+.review_file {
+	width: 100px;
+	height: 100px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+.c_d {
+	margin-top: 10px;
+	text-align: right;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 8px;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #333333;
+	cursor: pointer;
+	border: 1px solid #333333;
+	color : white;
+	width: 10%;
+	height: 20%;
+	text-align: center;
 	
-		display: inline-block;
-		padding: 10px;
-		color: #999;
-		font-size: inherit; 
-		line-height: normal; 
-		vertical-align: middle; 
-		background-color: #fdfdfd; 
-		cursor: pointer; 
-		border: 1px solid #ebebeb; 
-		border-bottom-color: #e2e2e2; 
-		border-radius: .25em; 
-		width: 9%; height : 40px;
-		text-align: center;
-	} 
-	.filebox input[type="file"] { /* 파일 필드 숨기기 */ 
-		position: absolute; 
-		width: 1px; height: 1px; 
-		padding: 0; margin: -1px; 
-		overflow: hidden; 
-		clip:rect(0,0,0,0); 
-		border: 0; 
-		display: inline-block;
-	}
-	
-	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> update css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-	.u_notice{
-		margin-left: 7px;
-		
-		color : #222222;
-		
-	}
-	#u_oldfile{
-		margin-bottom: 7px;
-		color: #e2e2e2;
-		float: right;
-	}
-	#s{
-		color : red;
-	}
-	.u_review_t{
-		border: 1px solid #e2e2e2;
-		width: 100%; height : 40px;
-		padding: 10px;
-		padding-left : 20px;
-		margin-bottom : 8px;
-		margin-right : 10px;
-		display: inline-block;
-		float: left;
-	}
+}
 
-	#u_star{
-		width : 100%; height: 40px;
-		margin-top : 8px;
-		border: 1px solid #e2e2e2;
-		padding : 5px 10px 10px 10px;
-		display: inline-block;
-		font-size: 14px;
-	}
-	#u_updatebtn, #u_updateresetbtn{
-		margin-top : 60px;
-		display: inline-block;
-		border: 1px solid #e2e2e2;
-		padding : 10px 10px 10px 10px;
-		width: 190px;
-		height: 40px;
-		font-size: 15px;
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	display: inline-block;
+}
 
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> update css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+.u_notice {
+	margin-left: 7px;
+	color: #222222;
+}
 
-	}
-	.u_filebox label { 
-	
-		display: inline-block;
-		padding: 10px;
-		color: #999;
-		font-size: inherit; 
-		line-height: normal; 
-		vertical-align: middle; 
-		background-color: #fdfdfd; 
-		cursor: pointer; 
-		border: 1px solid #ebebeb; 
-		border-bottom-color: #e2e2e2; 
-		border-radius: .25em; 
-		width: 12%; height : 40px;
-		text-align: center;
-	} 
-	.u_filebox input[type="file"] { /* 파일 필드 숨기기 */ 
-		position: absolute; 
-		width: 1px; height: 1px; 
-		padding: 0; margin: -1px; 
-		overflow: hidden; 
-		clip:rect(0,0,0,0); 
-		border: 0; 
-		display: inline-block;
-	}
+#u_oldfile {
+	margin-bottom: 7px;
+	color: #e2e2e2;
+	float: right;
+}
 
-	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> modal css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-	.modal{
-	
-		border: 1px solid #888;
-		width:800px;
-	    height:500px;
-	    
-	    top: 50%;
- 	 	left: 50%;
-        transform: translate(-50%, -50%);
-	    
-	    position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        overflow: auto; /* Enable scroll if needed */
-	    background-color: #fefefe;
-		visibility: hidden;
-		border-radius: 20px; 
-		
-	}
-	.modal_background{
-		display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+#s {
+	color: red;
+}
 
-	}
-	#close{
-		color: #aaa;
-		margin-top : 7px;
-		margin-right : 15px;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-	}
-	#close:hover,
-    #close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-	.modal_header{
-		font-size: 25px;
-		font-weight: bold;
-		padding : 10px;
-		margin-top: 20px;
-		margin-left: 10px;
-	}
-	.modalContent{
-		padding : 10px;
-	}
-	
+.u_review_t {
+	border: 1px solid #e2e2e2;
+	width: 95%;
+	height: 20%;
+	padding: 10px;
+	padding-left: 20px;
+	margin-bottom: 8px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
 
-	</style>
+#u_star {
+	width: 100%;
+	height: 40px;
+	margin-top: 8px;
+	border: 1px solid #e2e2e2;
+	padding: 5px 10px 10px 10px;
+	display: inline-block;
+	font-size: 14px;
+}
+
+#u_updatebtn, #u_updateresetbtn {
+	margin-top: 60px;
+	display: inline-block;
+	border: 1px solid #e2e2e2;
+	padding: 10px 10px 10px 10px;
+	width: 190px;
+	height: 40px;
+	font-size: 15px;
+}
+
+.u_filebox label {
+	display: inline-block;
+	padding: 10px;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	width: 12%;
+	height: 40px;
+	text-align: center;
+}
+
+.u_filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	display: inline-block;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> modal css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+#modal {
+	border: 1px solid #888;
+	width: 820px;
+	height: 520px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #fefefe;
+	visibility: hidden;
+	border-radius: 20px;
+}
+#modal2 {
+	border: 1px solid #888;
+	width: 820px;
+	height: 520px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #fefefe;
+	visibility: hidden;
+}
+
+.modal_background {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal_background2 {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#close {
+	color: #aaa;
+	margin-top: 7px;
+	margin-right: 15px;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+#close2 {
+	color: #aaa;
+	margin-top: 7px;
+	margin-right: 15px;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#close:hover, #close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal_header {
+	font-size: 25px;
+	font-weight: bold;
+	padding: 10px;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.modalContent {
+	padding: 10px;
+}
+#modal_img{
+	padding : 20px;
+	width: 700px;
+	height: 450px; 
+}
+</style>
 
 	<script type="text/javascript">
 
@@ -282,7 +339,7 @@
 
 			}
 	}
-	function modalOpen(r_no){
+	function modalOpen(r_no, f){
 		
 		var modal = document.getElementById('modal');
 		var close = document.getElementById('close');
@@ -293,20 +350,19 @@
 		var t_title = c_title.trim();
 		
 		var content = document.getElementById('c_content'+r_no).innerHTML
-		var oldfile = content.substring(content.lastIndexOf("/")+1, content.lastIndexOf(">")-1);
-		
 		var c_content = content.substring(content.indexOf(">")+1);
 		var t_content = c_content.trim();
+
+		var oldfile2 = f; 		
 	
 		
 		$('#modal_r_no').val(r_no);
-		$('#modal_oldfile').val(oldfile);
-		
+		$('#modal_oldfile').val(oldfile2);
+	
 		$('#u_title').val(t_title);
 		document.getElementById('u_content').innerHTML = t_content;
 		
 		$('#u_star').val(star.length).prop("selected",true);
-		document.getElementById('u_oldfile').innerHTML = oldfile;
 		
 		
 		//modal 창 띄우기
@@ -319,7 +375,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="width: 100%">
 	<div class="wrapper">
 		<div class="review_top">
 	
@@ -336,7 +392,7 @@
 <input type="hidden" name="f_id" value="${f_id}">
 
 
-<div>
+<div style="margin-bottom: 10px;">
 	<input class="review_t" placeholder="제목 : " name="r_title" id = "r_title">
 	<div class="filebox"><label for="r_file">파일첨부</label><input type="file" id="r_file" name="r_fileMF" accept=".jpg,.gif,.png" multiple="multiple"></div>
 	
@@ -360,8 +416,8 @@
 						<option value="1">★☆☆☆☆  별로 ㅠㅠㅠ</option>
 					</select>
 				<button class="btn btn-default" id="createbtn" style="float: right;" type="submit">
-				<img class="check" src="${pageContext.request.contextPath}/image/check.jpg">
-				후기 등록하기
+				<%-- <img class="check" src="${pageContext.request.contextPath}/image/check.jpg">
+				 --%>후기 등록하기
 				</button>					
 				</div>
 			</div>
@@ -390,14 +446,14 @@
 												${dto.r_content}
 											</c:when>
 											<c:otherwise>										
-												<img class="review_file" src="${pageContext.request.contextPath}/storage/${dto.r_file}">
-												${dto.r_content}								
+												<img class="review_file" id="review_img" src="${pageContext.request.contextPath}/storage/${dto.r_file}">
+												<br>${dto.r_content}								
 											</c:otherwise>
 										</c:choose>		
 									</div>
 									<div class="c_d">${dto.m_id} / ${dto.r_date} </div>
 									<c:if test="${sessionScope.id == dto.m_id}">
-									<div class="c_d"><button type="button" id="modalOpen" onclick="modalOpen('${dto.r_no}')">수정</button> / <button type="button" onclick="review_delete('${dto.r_no}','${dto.r_file}')">삭제</button></div>		
+									<div class="c_d"><button type="button" id="modalOpen" onclick="modalOpen('${dto.r_no}','${dto.r_file}')">수정</button> / <button type="button" onclick="review_delete('${dto.r_no}','${dto.r_file}')">삭제</button></div>		
 									</c:if>
 								</div>
 
@@ -461,7 +517,18 @@
 
 							</div>
 						</div>
+					</div>	
+					
+					<div class="modal_background2" id="modal_background2">
+						<div class="modal fade" id="modal2">
+							<div><span id="close2">&times;</span></div>
+							<div class="modalContent">
+							<img id="modal_img">
+							</div>
+			
+						</div>
 					</div>
+					
 
 			<br><br><br>
 		</div>
@@ -475,7 +542,7 @@
 	
 	
 	var modal = document.getElementById('modal');
-	
+	var modal2 = document.getElementById('modal2');
 
  $(function(){
 
@@ -486,11 +553,25 @@
 			modal.style.visibility="hidden";
 			$('#modal_background').hide();
 		});
+		//modal2 창 닫기
+		$('#close2').click(function (e){
+			e.preventDefault();
+			modal2.style.visibility="hidden";
+			$('#modal_background2').hide();
+		});
 		$('#u_updateresetbtn').click(function (e) {
 			e.preventDefault();
 			modal.style.visibility="hidden";
 			$('#modal_background').hide();
 		});
+		$('#review_img').click(function (e){
+			
+			var msrc = jQuery('#review_img').attr("src");
+			jQuery("#modal_img").attr("src", msrc);
+			
+			$('#modal_background2').show();
+			modal2.style.visibility = "visible";
+		})
 		
 		
 	});
