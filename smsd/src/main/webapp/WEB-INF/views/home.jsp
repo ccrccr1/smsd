@@ -99,7 +99,7 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/spring.jpg");
+		background-image: url("image/spring1_2.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
@@ -119,7 +119,7 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/summer.jpg");
+		background-image: url("image/summer1_2.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
@@ -140,7 +140,7 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/fall.jpg");
+		background-image: url("image/fall1_2.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
@@ -161,7 +161,7 @@ $(function(){
 		display: inline-block;
 		width: 25%;
 		padding: 350px 0;
-		background-image: url("image/winter.jpg");
+		background-image: url("image/winter1_2.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 		cursor:url(https://3.bp.blogspot.com/-RqwdqNsKyes/VuuIFvsO9VI/AAAAAAAABfA/DO9-9WvAh7csGaUKWZ5qTxAOb4gwNP0_Q/s1600/cursor.png), progress;
