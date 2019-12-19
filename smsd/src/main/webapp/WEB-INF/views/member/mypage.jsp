@@ -148,11 +148,6 @@ $(function() {
 				<div id="infoDiv" style="">
 					<div class="container">
 						<div class="section __half __zero __wide">
-							<h3 class="subject __underline">
-								<em>마이페이지</em>
-							</h3>
-
-
 							<div class="row">
 								<div class="col-md">
 									<label for="m_email">이메일 주소</label>

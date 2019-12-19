@@ -39,17 +39,36 @@ public class FestivalController {
 		request.setAttribute("list", imageList);
 		request.setAttribute("read", read);
 		
+		//review paging
 		
-		//review
-		List<ReviewDTO> rlist = rmapper.list(id);
+		int nowPage = 1;
+		if(request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
+		int recordPerPage = 5;
+		
+		int sno = ((nowPage - 1) * recordPerPage ) + 1;
+		int eno = nowPage * recordPerPage;
+		
+		Map map = new HashMap();
+		map.put("sno", sno);
+		map.put("eno", eno);
+		map.put("f_id", id);
+
+		List<ReviewDTO> rlist = rmapper.list(map);
 		int cnt = rmapper.total(id);
 		
+		String paging = Utility.reviewpaging(cnt, nowPage, recordPerPage, id);
+		
+		request.setAttribute("paging", paging);
 		request.setAttribute("cnt", cnt);
 		request.setAttribute("f_id", id);
 		request.setAttribute("rlist", rlist);
 		
+		
 		return "/festival/read";
 	}
+	
 	
 	@GetMapping("/festival/list")
 	public String list(HttpServletRequest request) {

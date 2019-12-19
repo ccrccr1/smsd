@@ -98,7 +98,7 @@
 						</c:when>
 						<c:when test="${status.index eq 4 }">
 						<div style="display: inline-block; width: 45%">
-						<h2 style="width:400px;"class="subject __underline"><em style="padding:0;">${dto.table_name }에서 내가 쓴글 (${dto.cnt})</em><a style="float:right;" href="${root }/qna/list?col=m_id&word=${sessionScope.id }"><em>[더보기]</em></a></h2>
+						<h2 style="width:400px;"class="subject __underline"><em style="padding:0;">${dto.table_name }에서 내가 쓴글 (${dto.cnt})</em><a style="float:right;" href="${root }/review/list?col=m_id&word=${sessionScope.id }"><em>[더보기]</em></a></h2>
 							<ul>
 						<c:forEach var="dto2" items="${title }" varStatus="status"  >
 						<c:choose>

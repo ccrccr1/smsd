@@ -14,13 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</insert>
 	
-	<select id="list" parameterType="int" resultType="ReviewDTO">
+	<select id="list" parameterType="Map" resultType="ReviewDTO">
 		
-       	 select r_no, r_title, r_content, r_star, r_file, to_char(r_date, 'yyyy-mm-dd') r_date, m_id, f_id
-       	 from review
-       	 	where f_id = #{f_id}
-       	 	order by r_no desc
-  
+		select r_no, r_title, r_content, r_star, r_file, to_char(r_date, 'yyyy-mm-dd') r_date, m_id, f_id, r
+		from (
+			 select r_no, r_title, r_content, r_star, r_file, r_date, m_id, f_id, rownum r
+       		 from review
+       	 	 where f_id = #{f_id}
+       	 	 order by r_no desc
+		)
+  		<![CDATA[
+		where r >= #{sno} and r <= #{eno}    	
+    	]]>
    	 			
 	</select>
 

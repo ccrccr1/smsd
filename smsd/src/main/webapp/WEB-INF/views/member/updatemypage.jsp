@@ -10,7 +10,8 @@
 	href="${root }/css/createcss/information.css" />
 <link rel="stylesheet"
 	href="${root }/css/createcss/layout.css" />
-	
+<link rel="stylesheet"
+	href="${root }/css/h.css" />
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	function sample6_execDaumPostcode() {
@@ -89,23 +90,16 @@ function emailcheck(email){
 		<!-- mast head start -->
 		<div id="mast-head">
 			<div class="container">
-
 				<h1 class="title" id="mastHeadTitle">정보수정</h1>
-
 			</div>
 		</div>
 		<!-- mast head end -->
 		<form action="updatemypage" class="form-horizontal" method="post"
 			name='frm' onsubmit="return inCheck(this)">
 			<div id="mast-body">
-
 				<div id="infoDiv" style="">
 					<div class="container">
 						<div class="section __half __zero __wide">
-							<h3 class="subject __underline">
-								<em>정보수정</em>
-							</h3>
-
 							<div class="row">
 								<div class="col-md">
 									<label for="user-office-0">휴대폰 번호</label>

@@ -6,7 +6,7 @@
 	border-bottom: 2px solid #ccc;
 /* 	border-left: 10px solid #55555B; */
 	text-height: 200%;
-	padding: 3px 5px;
+	padding: 10px 5px;
 	margin: 5px 0;
 	letter-spacing: 1px;
 	word-spacing: 3px;
@@ -24,7 +24,6 @@
 	BACKGROUND-COLOR: #FFF;
 	border-bottom: 1px solid #000;
 }
-
 .h h3 {
 	FONT-SIZE: 22px;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);

@@ -45,9 +45,6 @@ function send(){
 			<div id="infoDiv" style="">
 				<div class="container">
 					<div class="section __half __zero __wide">
-						<h3 class="subject __underline">
-							<em>약관</em>
-						</h3>
 						<div class="row __block __low">
 							<div class="privacyList">
 

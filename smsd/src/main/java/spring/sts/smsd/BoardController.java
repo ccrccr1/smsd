@@ -36,19 +36,17 @@ public class BoardController {
 	@Autowired 
 	private BoardService service;
 	 
-	@GetMapping("/review")
-	public String review(HttpServletRequest request) {
-		
-		int f_id = Integer.parseInt(request.getParameter("f_id"));
-		List<ReviewDTO> list = rmapper.list(f_id);
-		
-		int cnt = rmapper.total(f_id);		
-		
-		request.setAttribute("cnt", cnt);
-		request.setAttribute("f_id", f_id);
-		request.setAttribute("list", list);
-		return "/review";
-	}
+	/*
+	 * @GetMapping("/review") public String review(HttpServletRequest request) {
+	 * 
+	 * int f_id = Integer.parseInt(request.getParameter("f_id")); List<ReviewDTO>
+	 * list = rmapper.list(f_id);
+	 * 
+	 * int cnt = rmapper.total(f_id);
+	 * 
+	 * request.setAttribute("cnt", cnt); request.setAttribute("f_id", f_id);
+	 * request.setAttribute("list", list); return "/review"; }
+	 */
 
 	@GetMapping("/festival/read/delete")
 	public String deleteR(int r_no, String oldfile, HttpServletRequest request, Model model) {

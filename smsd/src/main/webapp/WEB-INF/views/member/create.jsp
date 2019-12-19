@@ -171,6 +171,18 @@
 			f.m_birth3.focus();
 			return false;
 		}
+		if (f.m_addr1.value.length == 0) {
+			alert("우편번호을 입력하세요.");
+			
+			return false;
+		}
+		if (f.m_addr2.value.length == 0) {
+			alert("주소를 입력하세요.");
+			
+			
+			return false;
+		}
+		
 	}
 </script>
 <title>Insert title here</title>
@@ -193,11 +205,6 @@
 				<div id="infoDiv" style="">
 					<div class="container">
 						<div class="section __half __zero __wide">
-							<h3 class="subject __underline">
-								<em>회원정보입력</em>
-							</h3>
-
-
 							<div class="row">
 								<div class="col-md">
 									<label for="m_email">이메일 주소</label>

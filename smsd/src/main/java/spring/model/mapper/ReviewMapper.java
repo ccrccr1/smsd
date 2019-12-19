@@ -1,12 +1,13 @@
 package spring.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import spring.model.festival.ReviewDTO;
 
 public interface ReviewMapper {
 	
-	List<ReviewDTO> list(int f_id);
+	List<ReviewDTO> list(Map map);
 	int total(int f_id);
 	int create(ReviewDTO dto);
 	int update(ReviewDTO dto);

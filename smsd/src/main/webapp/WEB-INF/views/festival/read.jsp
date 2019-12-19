@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="${root}/festival/read/css/icomoon.css">
     <link rel="stylesheet" href="${root}/festival/read/css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/review.css">
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     
     <style>
 	.btn_1{
@@ -37,6 +39,9 @@
 	    transition: 0.5s;
 	    background-color: #fe5c24;
 	    font-weight: 500;	
+	}
+	.footer {
+		bottom: 0;
 	}
 	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> modal css <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -403,7 +408,7 @@
 				</c:choose>
 
 		</div><!-- /review_content -->
-
+		${paging }
 	</div>
 </div>
 
@@ -498,7 +503,7 @@
 			e.preventDefault();
 			$('#mtest2').hide();
 	 });
-	 
+/* 
 	 $('#ptest').click(function (e){ 
 		 var msrc = jQuery('#ptest').attr("src");
 		 jQuery("#modal_img").attr("src", msrc);
@@ -508,23 +513,18 @@
 	 $('#pclose').click(function (e){
 			e.preventDefault();
 			$('#mtest').hide();
-	 });
+	 }); */
 	 
- 
-         $("#pic").click(function(){
-             if($(this).hasClass("review_file")){
-                 $("#pic").addClass("review_file_large") ;
-                 $("#pic").removeClass("review_file") ;
-                
-             }
-             else{
-                 $("#pic").addClass("review_file") ;
-                 $("#pic").removeClass("review_file_large") ;               
-             }
-         });
 
-
-
+     
+      $('.review_file').click(function(e){
+    	 if($(this).hasClass('review_file')){
+    		 $(this).removeClass('review_file').addClass('review_file_large');
+    	 }else if($(this).hasClass('review_file_large')){
+    		 $(this).removeClass('review_file_large').addClass('review_file');
+    	 }
+     });  
+	 
   });
 </script>
         
@@ -557,7 +557,7 @@
   		location.href = url;
   	}
   </script>
-  
+ 
   
   
   <script src="${root}/festival/read/js/jquery.min.js"></script>
