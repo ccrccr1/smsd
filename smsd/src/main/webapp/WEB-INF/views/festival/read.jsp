@@ -233,7 +233,7 @@
 		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center py-5 bg-light mb-4">
 		              <div class="text">		
-		                <p>조횟 수</p>
+		                <p>조회 수</p>
 		                <br>
 		                <strong class="number" data-number="${read.f_cnt }">0</strong>
 		              </div>
