@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../css/review.css">
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    
+
     <style>
 	.btn_1{
 		margin-top: 60px;
@@ -126,7 +126,7 @@
     
     
   </head>
-  <body>    
+  <body class="body">    
     <div class="hero-wrap js-fullheight" style="background-image: url('${read.f_image}');" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
@@ -408,7 +408,9 @@
 				</c:choose>
 
 		</div><!-- /review_content -->
+		<div class="rePaging">
 		${paging }
+		</div>
 	</div>
 </div>
 
@@ -514,9 +516,7 @@
 			e.preventDefault();
 			$('#mtest').hide();
 	 }); */
-	 
-
-     
+    
       $('.review_file').click(function(e){
     	 if($(this).hasClass('review_file')){
     		 $(this).removeClass('review_file').addClass('review_file_large');

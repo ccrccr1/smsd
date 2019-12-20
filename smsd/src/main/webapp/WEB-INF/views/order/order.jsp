@@ -125,8 +125,8 @@ function order_insert(){
 	.order_head{
 		font-size: 30px;
 		font-weight: 700;
-		padding: 30px 0;
-		border-bottom: 2px solid #000;
+		padding: 20px 0;
+		border-bottom: 1px solid #ebebeb;
 	}
 	.information{
 		width: 100%;

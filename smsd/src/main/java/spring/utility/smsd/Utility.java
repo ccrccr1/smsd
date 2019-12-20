@@ -273,7 +273,7 @@ public class Utility {
 			     } 
 			 
 			     if (nowPage == i){ 
-			       str.append("<li class='active'><a href=#>"+i+"</a></li>"); 
+			       str.append("<li class='active'><a href=# >"+i+"</a></li>"); 
 			     }else{ 
 			       str.append("<li><a href='./read.do?id="+id+"&nowPage="+i+"'>"+i+"</A></li>");   
 			     } 

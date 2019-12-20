@@ -115,16 +115,12 @@ function graph(){
 	margin: 0 auto;
 }
 
-.order_div {
-	margin: 40px;
-}
 
 .order_header h1 {
 	font-size: 30px;
 	font-weight: 700;
-	margin-top: 40px;
-	padding-bottom: 20px;
-	border-bottom: 2px solid #000;
+	padding: 20px 0;
+	border-bottom: 1px solid #ebebeb;
 }
 
 .order_list {
