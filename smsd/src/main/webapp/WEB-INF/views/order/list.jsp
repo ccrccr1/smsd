@@ -37,7 +37,7 @@ $(document).ready(function(){
     $(".openMask").click(function(e){
         e.preventDefault();
         wrapWindowByMask();
-        $('.gBar').css("height" , "50%").css("font-size", "16px").text("default");
+        $('.gBar').css("font-size", "16px");
     });
     //닫기 버튼을 눌렀을 때
     $(".window .close").click(function (e) {  
@@ -195,7 +195,7 @@ function graph(){
 	margin-left: -500px;
 	width: 1100px;
 	height: 600px;
-	background-color: #E0F8F7;
+	background-color: #f0f0f0;
 	z-index: 10000;
 }
 
