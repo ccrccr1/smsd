@@ -123,7 +123,13 @@
 }
 
 </style>
-    
+<script type="text/javascript">
+    	function aa() {
+			alert("로그인을 해야만 예매가 가능합니다.");
+			location.href= "${root}/login"
+		}
+</script>    
+ 
     
   </head>
   <body class="body">    
@@ -133,8 +139,16 @@
           <div class="col-md-12 text-center ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">${read.f_title }</h1>
             <div class="banner_text_iner">
-		           	<a href="javascript:booking('${read.f_id}')" class="btn_1">예매하기</a>
-	            	<a href="javascript:bucket('${read.f_id}')" class="btn_1">즐겨찾기</a>
+            		<c:choose>
+					<c:when test="${empty sessionScope.id}">
+			            	<a href="javascript:aa()" class="btn_1">예매하기</a>
+			            	<a href="javascript:aa()" class="btn_1">즐겨찾기</a>
+			        </c:when>
+			        <c:otherwise>			        
+			           	<a href="javascript:booking('${read.f_id}')" class="btn_1">예매하기</a>
+		            	<a href="javascript:bucket('${read.f_id}')" class="btn_1">즐겨찾기</a>
+			        </c:otherwise>      		
+            		</c:choose>
             </div>
           </div>
         </div>

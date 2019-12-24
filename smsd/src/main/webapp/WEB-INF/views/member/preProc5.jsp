@@ -15,30 +15,19 @@
 <body>
 	<div class="wrapper">
 		<!-- mast head start -->
-		<div id="mast-head">
-			<div class="container">
+		<div id="mast-head">			
 
-				<h1 class="title" id="mastHeadTitle">오류페이지</h1>
-
-			</div>
+			
 		</div>
 		<!-- mast head end -->
 		<div id="mast-body">
 
 			<div id="infoDiv" style="">
 				<div class="container">
-					<div class="section __half __zero __wide">
-						<h3 class="subject __underline">							
-						</h3>
+					<div class="section __half __zero __wide">						
 						<div class="container">
-							<h1 class="description">${str}</h1><br>
-							
-							
+							<h1 class="description" style="text-align: center">${str}</h1><br>
 						</div>
-					<h3 class="subject __underline">
-				
-						</h3>
-
 					</div>
 					<form class="form-horizontal" action="./회원가입.html" method="post"
 						onsubmit="return send()" name="frm">
@@ -53,5 +42,6 @@
 		</div>
 		
 	</div>
+
 </body>
 </html>

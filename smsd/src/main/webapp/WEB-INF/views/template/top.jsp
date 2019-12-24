@@ -18,7 +18,12 @@
 			<ul class="top_ul1">
 				<li><a href="${root}/festival/list">홈</a></li>
 				<li><a href="${root}/notice/list">공지사항</a></li>
-				<li><a href="${root}/board/list">모임 게시판</a></li>
+				<c:choose>
+					<c:when test="${not empty sessionScope.id }">
+					<li><a href="${root}/board/list">모임 게시판</a></li>
+					</c:when>
+				</c:choose>
+				
 			</ul>
 
 			<ul class="top_ul2">
