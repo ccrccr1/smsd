@@ -34,12 +34,22 @@
 		width: 1100px;
 		margin: 0 auto;
 	}
+	.like_h1{
+	font-size: 250%;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	color: #666;
+	border-bottom: 2px solid #ccc;
+/* 	border-left: 10px solid #55555B; */
+	text-height: 200%;
+	padding: 10px 5px;
+	margin: 5px 0;
+	letter-spacing: 1px;
+	word-spacing: 3px;
+	}
 </style>
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/top.css">
 <link rel="stylesheet" type="text/css" href="css/table.css">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
 <script>
@@ -153,7 +163,9 @@ function deleteAction(){
 <body>
 	
 	<div class="wrapper2">
-		<h1 style="font-size: 250%">즐겨찾기</h1>
+		<div class="h">
+			<h1 class="like_h1">즐겨찾기</h1>
+		</div>
 		<br>
 		<table style="width: 100%; align-content: center; ">
 			<thead>
@@ -162,9 +174,9 @@ function deleteAction(){
 					<th style="display: table-cell; vertical-align: middle;">축제사진</th>
 					<th style="display: table-cell; vertical-align: middle;">축제명</th>
 					<th style="display: table-cell; vertical-align: middle;">축제기간</th>
-					<th style="display: table-cell; vertical-align: middle;">즐겨찾기 날짜</th>
+					<th style="display: table-cell; width:70px; vertical-align: middle;">즐겨찾기 날짜</th>
 					<th style="width: 40px; display: table-cell; vertical-align: middle;">수량</th>
-					<th style="width: 50px; display: table-cell; vertical-align: middle;">가격</th>					
+					<th style="width: 30px; display: table-cell; vertical-align: middle;">가격</th>					
 				</tr>
 			</thead>
 		<tbody>

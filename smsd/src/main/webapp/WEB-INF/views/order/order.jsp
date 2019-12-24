@@ -376,6 +376,9 @@ function order_insert(){
 	.goods{
 		margin-left: 20px;
 	}
+	.wrapper{
+		height: auto;
+	}
 
 </style>
 </head>
@@ -470,7 +473,7 @@ function order_insert(){
 								</table>
 							</div>
 							<a href="#" class="openMask"><input type="button" class="p_btn_s" value="결제하기"></a>
-							<input type="button" class="p_btn_c" value="취소하기">
+							<input type="button" class="p_btn_c" onclick="history.back()" value="취소하기">
 						</div>
 					</div>
 				</div>

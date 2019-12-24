@@ -24,7 +24,7 @@
 <script type="text/JavaScript">
 	window.onload = function() {
 		CKEDITOR.replace('n_content'); // <TEXTAREA>태그 id 값
-	};
+	}
 </script>
 
 <script type="text/javascript">

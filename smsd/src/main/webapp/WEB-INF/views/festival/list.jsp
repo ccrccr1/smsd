@@ -67,7 +67,7 @@
     <script type="text/javascript">
     	function aa() {
 			alert("로그인을 해야만 예매가 가능합니다.");
-			location.href= "${root}/login"
+			location.href= "${root}/member/login"
 		}
     </script>
 </head>

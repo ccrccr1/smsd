@@ -126,7 +126,7 @@
 <script type="text/javascript">
     	function aa() {
 			alert("로그인을 해야만 예매가 가능합니다.");
-			location.href= "${root}/login"
+			location.href= "${root}/member/login"
 		}
 </script>    
  
@@ -278,7 +278,7 @@
         
         
         <div class="container" style="width: 100%">
-		<div class="wrapper">
+		<div class="wrapper" style="height: auto;">
 		<div class="review_top">
 			<h3 class="review_title">구매후기(${cnt})</h3>
 	

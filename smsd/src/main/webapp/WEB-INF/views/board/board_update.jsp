@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <link rel="stylesheet" type="text/css" href="../css/board.css">
+<style type="text/css">
+	.wrapper{
+		height: 1100px;
+	}
+</style>
 
 </head>
 <body id="KOR">
