@@ -31,7 +31,7 @@
 <definition name="/member/findpw" template="/WEB-INF/views/member/findpw.jsp"/> 
 <definition name="/member/findidproc" template="/WEB-INF/views/member/findidproc.jsp"/> 
 <definition name="/member/findpwproc" template="/WEB-INF/views/member/findpwproc.jsp"/> 
-<definition name="/mypage" extends="main"> 
+<definition name="/member/mypage" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp" /> 
 </definition>   
