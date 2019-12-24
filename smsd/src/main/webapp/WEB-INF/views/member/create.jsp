@@ -93,7 +93,8 @@
 			if(email==''){
 				alert("이메일을 입력하세요.");
 				document.frm.m_email.focus();
-			}else{
+			}
+			else{
 				var url="emailcheck";
 				var param = "email=" + email;
 				
@@ -106,6 +107,13 @@
 		</script>
 <script type="text/javascript">
 	function inCheck(f) {
+		var re = /^[a-zA-Z0-9]{4,12}$/;
+		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var re3 = /^[가-힣]+$/;
+		var email = document.getElementById("m_email");
+		var pw = document.getElementById("pw1");
+		var id = document.getElementById("m_id");
+		var name = document.getElementById("name")
 		if (f.m_id.value.length == 0) {
 			alert("아이디를 입력하세요");
 			f.m_id.focus();
@@ -122,7 +130,13 @@
 			f.m_passwd2.focus();
 			return false;
 		}
+       if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+           return false;
+       }
 
+       if(!check(re,pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+           return false;
+       }
 		if (f.m_passwd.value != f.m_passwd2.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			f.m_passwd.value = "";
@@ -136,11 +150,17 @@
 			f.m_name.focus();
 			return false;
 		}
+		if(!check(re3,name,"성명을 정확히 입력해야합니다.")){
+			return false;
+		}
 		if (f.m_email.value.length == 0) {
 			alert("email을 입력하세요");
 			f.m_email.focus();
 			return false;
 		}
+       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+           return false;
+       }
 		if (f.m_phone1.selectedIndex == 0) {
 			alert("핸드폰 번호를 선택하세요.");
 			f.m_phone1.focus();
@@ -182,9 +202,18 @@
 			
 			return false;
 		}
-		
+	   function check(re, what, message) {
+	       if(re.test(what.value)) {
+	           return true;
+	       }
+		       alert(message);
+		       what.value = "";
+		       what.focus();
+		     // return false;
+		   }
 	}
 </script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -213,13 +242,13 @@
 									<div class="form-wrap __normal __x1">
 										<div class="inner">
 											<div class="ui-input">
-												<input type="email" id="m_email" name="m_email" 
-													title="이메일주소"> <label for="m_email"></label>
+												<input type="text" id="m_email" name="m_email" value="${tomail}"
+													title="이메일주소" readonly="readonly"> <label for="m_email"></label>
 											</div>
 											<button type="button" id="dupChkBtn" name="dupChkBtn" onclick="emailcheck(document.frm.m_email.value)"
 												class="ui-button __square-small __black" title="중복확인버튼">중복확인</button>
 												 <div id="emailcheck"></div>
-										</div>
+									</div>
 
 									</div>
 								</div>
@@ -235,7 +264,7 @@
 								<div class="col-md">
 									<div class="form-wrap __normal __x1">
 										<div class="ui-input">
-											<input type="text" id="m_id" name="m_id" title="아이디">
+											<input type="text" id="m_id" name="m_id" maxlength="14"  title="아이디">
 											<label for="m_id"></label>
 										</div>
 										<button type="button" id="dupChkBtnForOnlId"
@@ -681,5 +710,6 @@
 			</div>
 		</form>
 	</div>
+
 </body>
 </html>

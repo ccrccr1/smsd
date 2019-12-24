@@ -18,23 +18,18 @@
 			<ul class="top_ul1">
 				<li><a href="${root}/festival/list">홈</a></li>
 				<li><a href="${root}/notice/list">공지사항</a></li>
-				<c:choose>
-					<c:when test="${not empty sessionScope.id }">
-					<li><a href="${root}/board/list">모임 게시판</a></li>
-					</c:when>
-				</c:choose>
-				
+				<li><a href="${root}/board/list">모임 게시판</a></li>
 			</ul>
 
 			<ul class="top_ul2">
 				<c:choose>
 					<c:when test="${empty sessionScope.id }">
-					<li><a href="${root}/login">로그인</a></li>
-					<li><a href="${root}/agree">회원가입</a></li>
+					<li><a href="${root}/member/login">로그인</a></li>
+					<li><a href="${root}/member/agree">회원가입</a></li>
 					</c:when>
 					<c:otherwise>					
-					<li><a href="${root }/logout">로그아웃</a></li>
-					<li><a href="${root }/mypage?id=${sessionScope.id}">마이페이지</a></li>
+					<li><a href="${root }/member/logout">로그아웃</a></li>
+					<li><a href="${root }/member/mypage?id=${sessionScope.id}">마이페이지</a></li>
 					<li><a href="${root}/order/list">거래내역</a></li>
 					</c:otherwise>
 				</c:choose>

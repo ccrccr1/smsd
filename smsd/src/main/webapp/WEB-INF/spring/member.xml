@@ -13,33 +13,33 @@
     
     
     </definition> 
-<definition name="/create" extends="main"> 
+<definition name="/member/create" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/create.jsp" /> 
 </definition>
    
-<definition name="/agree" extends="main"> 
+<definition name="/member/agree" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/agree.jsp" /> 
 </definition>
    
-<definition name="/login" extends="main"> 
+<definition name="/member/login" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/login.jsp" /> 
 </definition>   
-<definition name="/findid" template="/WEB-INF/views/member/findid.jsp"/> 
-<definition name="/findpw" template="/WEB-INF/views/member/findpw.jsp"/> 
-<definition name="/findidproc" template="/WEB-INF/views/member/findidproc.jsp"/> 
-<definition name="/findpwproc" template="/WEB-INF/views/member/findpwproc.jsp"/> 
+<definition name="/member/findid" template="/WEB-INF/views/member/findid.jsp"/> 
+<definition name="/member/findpw" template="/WEB-INF/views/member/findpw.jsp"/> 
+<definition name="/member/findidproc" template="/WEB-INF/views/member/findidproc.jsp"/> 
+<definition name="/member/findpwproc" template="/WEB-INF/views/member/findpwproc.jsp"/> 
 <definition name="/mypage" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp" /> 
 </definition>   
-<definition name="/updatemypage" extends="main"> 
+<definition name="/member/updatemypage" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/updatemypage.jsp" /> 
 </definition>   
-<definition name="/preProc" extends="main"> 
+<definition name="/member/preProc" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/preProc.jsp" /> 
 </definition>   
@@ -55,9 +55,21 @@
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/preProc4.jsp" /> 
 </definition>   
-<definition name="/iwrite" extends="main"> 
+<definition name="/member/iwrite" extends="main"> 
         <put-attribute name="title" value="회원 조희" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member/iwritecnt.jsp" />
+</definition>   
+<definition name="/member/email" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/email.jsp" />
+</definition>   
+<definition name="/member/email_injeung" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/email_injeung.jsp" />
+</definition>   
+<definition name="/member/emailinjeung" extends="main"> 
+        <put-attribute name="title" value="회원 조희" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member/emailinjeung.jsp" />
 </definition>   
 
    

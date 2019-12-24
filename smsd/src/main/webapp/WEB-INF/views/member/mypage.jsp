@@ -297,7 +297,7 @@ $(function() {
 							<!-- </div> -->
 						</div>
 						<button type="button" class="ui-button __square-large __blue"
-						onclick="location.href='${root }/updatemypage?id=${sessionScope.id}'">정보수정</button>
+						onclick="location.href='${root }/member/updatemypage?id=${sessionScope.id}'">정보수정</button>
 						<button type="button" class="ui-button __square-large __blue"
 						 name="updatepasswd" id="updatepasswd">비밀번호 수정</button>
 						<button type="button" class="ui-button __square-large __black"
@@ -305,7 +305,7 @@ $(function() {
 						<button type="button" class="ui-button __square-large __black"
 						onclick="location.href='${root}/favorite'">즐겨찾기</button>
 						<button type="button" class="ui-button __square-large __black"
-						onclick="location.href='${root}/iwrite?m_id=${sessionScope.id}'">내가 쓴 글</button>
+						onclick="location.href='${root}/member/iwrite?m_id=${sessionScope.id}'">내가 쓴 글</button>
 					<c:if test="${sessionScope.id =='admin'}">
 						<button type="button" class="ui-button __square-large __black" id="updateFestival" name="updateFestival">축제 최신화</button>
 					</c:if>
@@ -315,7 +315,7 @@ $(function() {
 			</div>
 		</form>
 	</div>
-	<form action="${root }/updatemoney" method="post"> 
+	<form action="${root }/member/updatemoney" method="post"> 
 	<input type="hidden" name="m_id" value="${dto.m_id }"/>
 	<input type="hidden" name="m_money" value="${dto.m_money }"/>
 	    <!-- The Modal -->
