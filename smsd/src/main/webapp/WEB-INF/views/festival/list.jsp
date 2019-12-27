@@ -41,7 +41,7 @@
     		margin-top: 100px;
     	}
     	.moreBtn {
-    		font-size: 30px;
+    		font-size: 31px;
     		padding: 20px 70px;
     	}
     	h1,h2,h3,h4,h5,h6{
