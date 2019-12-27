@@ -5,8 +5,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -157,13 +161,18 @@ public class TourAPIController {
 	// 이번년도 기준이며 다른 년도 정보를 얻고 싶으면 REQUESTURL 수정 필요
 	@PostMapping(value="/tour/api/list/allCreate")
 	public void allCreate(@RequestBody Map map){
+		int nYear = Integer.parseInt(String.valueOf(new GregorianCalendar(Locale.KOREA).get(Calendar.YEAR)).substring(2));
 		int totalPage = 0;
 		int pageNo = 1;
-		String f_sdate = "&eventstartdate="+(String)map.get("f_sdate");
-		String f_edate = "&eventenddate="+(String)map.get("f_edate");
+		String f_sdate = "&eventstartdate="+nYear+(String)map.get("f_sdate");
+		String f_edate = "&eventenddate="+nYear+(String)map.get("f_edate");
 		Random random = new Random();
+		mapper.deleteDateFestival();
+		mapper.deleteDateFestivalImage();
 		do {
-			String requestAllFestivalURL = RequestURL.ALLFESTIVALURL+f_sdate+f_edate+pageNo;
+			String requestAllFestivalURL = RequestURL.ALLFESTIVALURL+f_sdate+f_edate+"&pageNo="+pageNo;
+			
+			System.out.println(requestAllFestivalURL);
 			try {
 				URL url = new URL(requestAllFestivalURL);
 				InputStream in = url.openStream();  
@@ -178,11 +187,14 @@ public class TourAPIController {
 				JSONObject json = (JSONObject)obj;
 				JSONObject response = (JSONObject)json.get("response");
 				JSONObject body = (JSONObject)response.get("body");
-				JSONObject totalCount = (JSONObject)body.get("totalCount");
-				totalPage = Integer.parseInt(totalCount.toString()) / 100;
+				int totalCount = Integer.parseInt(body.get("totalCount").toString());
+				totalPage = totalCount / 100;
+				if(totalPage > 3) {
+					totalPage = 3;
+				}
 				JSONObject items = (JSONObject)body.get("items");
 				JSONArray itemList = (JSONArray)items.get("item");
-				
+				System.out.println(itemList);
 				for(int i=0;i<itemList.size();i++) {
 					FestivalDTO dto = new FestivalDTO();
 					JSONObject item = (JSONObject)itemList.get(i);
@@ -204,7 +216,6 @@ public class TourAPIController {
 					//Image 가 없는 축제 삭제
 					mapper.optimize();
 				}
-
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

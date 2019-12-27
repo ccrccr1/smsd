@@ -71,7 +71,8 @@
 <!-- 	<bean id="dataSource" destroy-method="close" -->
 <!-- 		class="org.apache.commons.dbcp.BasicDataSource" -->
 <!-- 		p:driverClassName="oracle.jdbc.driver.OracleDriver" -->
-<!-- 		p:url="jdbc:oracle:thin:@172.16.81.2:1521:XE" p:username="smsd" -->
+<!-- 		p:url="jdbc:oracle:thin:@172.16.81.2:1521:XE"
+			p:username="smsd" -->
 <!-- 		p:password="1234" /> -->
 
 

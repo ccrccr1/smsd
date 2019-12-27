@@ -74,31 +74,6 @@ $(function() {
 $(function() {
 	 
 	
-
-	    $(".close").click(function() {
-	      $("#festivalModal").css({
-	        "display": "none"
-	      });
-	    });
-	    $("#updateFestival").click(function() {
-		      $("#festivalModal").css({
-		        "display": "block"
-		      });
-		    });
-		    $("html").click(function(event) {
-		      if (event.target.id === "festivalModal") {
-		        $("#festivalModal").css({
-		          "display": "none"
-		        });
-		      }
-		    });
-	});
-
-</script>
-<script type="text/javascript">
-$(function() {
-	 
-	
 	    $("#updatepasswd").click(function() {
 	      $("#myModal2").css({
 	        "display": "block"
@@ -307,7 +282,7 @@ $(function() {
 						<button type="button" class="ui-button __square-large __black"
 						onclick="location.href='${root}/member/iwrite?m_id=${sessionScope.id}'">내가 쓴 글</button>
 					<c:if test="${sessionScope.id =='admin'}">
-						<button type="button" class="ui-button __square-large __black" id="updateFestival" name="updateFestival">축제 최신화</button>
+						<button type="button" class="ui-button __square-large __black" id="updateFestival" name="updateFestival" onclick="enrollFestival()">축제 최신화</button>
 					</c:if>
 						
 					</div>
@@ -342,32 +317,6 @@ $(function() {
 				</div>
 			</div>
 	
-      </div>
-      </div>
-    <div id="festivalModal" class="modal">
- 
-      <!-- Modal content -->
-        
-      <div class="modal-content">
-        <span class="close">&times;</span>    
-                                                                
-			<div id="divOnlId" class="form-horizontal">
-				<div class="col-md">
-					<label style="color: #8a8a8a; line-height: 34px; padding-right: 10px;" for="update_date">축제 기간</label>
-					</div>
-					<div class="col-sm-2">
-					<div class="form-wrap __normal __x1">
-						<div class="ui-input">
-						<input type="date" id="update_sdate" name="update_sdate" title="축제 시작 날짜">
-						</div>
-						<div class="ui-input">
-						<input type="date" id="update_edate" name="update_edate" title="축제 종료 날짜">
-						</div>
-						<button type="button" id="updatemoney" name="updatemoney" 
-						class="ui-button __square-small __black" title="출전버튼" onclick="enrollFestival()">최신화하기</button>										
-					</div>
-				</div>
-			</div>
       </div>
       </div>
       </form>
@@ -417,9 +366,7 @@ $(function() {
 </body>
     <script>
     	function enrollFestival(){
-    		var sdate = $("#update_sdate").val();
-    		var edate = $("#update_edate").val();
-			var aaa = {"f_sdate":sdate,"f_date":edate};
+			var aaa = {"f_sdate":"0101","f_edate":"1231"};
     		$.ajax({
 				url:"${root}/tour/api/list/allCreate",
 				type:"post",
@@ -428,7 +375,7 @@ $(function() {
 				success: function(data){
 					alert("success");
 					console.log("success");
-					/* enrollFestivalDetail() ;*/
+					enrollFestivalDetail() ;
 				},
 				error: function(request, status, error){
 					alert("에러1 " + request);
@@ -440,7 +387,7 @@ $(function() {
     	}
     	function enrollFestivalDetail(){
 			$.ajax({
-				url:"./tour/api/list/detailCreate",
+				url:"${root}/tour/api/list/detailCreate",
 				type:"get",
 				contentType : "application/json; charset=utf-8",
 				success: function(data){

@@ -169,4 +169,10 @@
 		set f_cnt = f_cnt+1
 		where f_id = #{id}
 	</update>
+	<delete id="deleteDateFestival">		
+			delete from festival
+	</delete>
+	<delete id="deleteDateFestivalImage">		
+			delete from festival_image
+	</delete>
 </mapper>
