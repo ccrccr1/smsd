@@ -69,7 +69,7 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
+						<div class="ui-input" style="width:80%;">
 							<input type="text" id="m_ID" name="m_ID" value="${sessionScope.id}" readonly>
 							<label for="m_ID"></label>
 						</div>						
@@ -87,7 +87,7 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
+						<div class="ui-input" style="width:80%;">
 							<input type="text" id="q_title" name="q_title" placeholder="Enter 제목">
 							<label for="q_title"></label>
 						</div>						
@@ -105,8 +105,8 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
-							<textarea rows="10" cols="94" id="q_content" name="q_content"></textarea>
+						<div class="ui-input" style="width:80%;">
+							<textarea rows="10" cols="100" id="q_content" name="q_content"></textarea>
 							<label for="q_content"></label>
 						</div>
 					</div>

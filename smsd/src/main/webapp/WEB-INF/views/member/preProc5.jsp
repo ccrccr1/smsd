@@ -13,9 +13,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" style="height: 600px;">
 		<!-- mast head start -->
-		<div id="mast-head">
+		<div id="mast-head" style="margin-top: 200px;">
 			<div class="container">
 
 				<h1 class="title" id="mastHeadTitle">오류페이지</h1>
@@ -40,14 +40,12 @@
 						</h3>
 
 					</div>
-					<form class="form-horizontal" action="./회원가입.html" method="post"
-						onsubmit="return send()" name="frm">
 						<div class="section __half __center">
 							<button type="button" class="ui-button __square-large __black"
-								onclick="window.close()">확인</button>
-							
+								onclick="history.back()">이전</button>
+							<button type="button" onclick="/home" class="ui-button __square-large __blue"
+								>홈</button>
 						</div>
-						</form>
 				</div>
 			</div>
 		</div>

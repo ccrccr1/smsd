@@ -11,7 +11,11 @@
 <title>게시글 등록</title>
 
 <link rel="stylesheet" type="text/css" href="../css/board.css">
-
+<style type="text/css">
+	.wrapper{
+		height: 1050px;
+	}
+</style>
 
 <script type="text/javascript">
 	function inCheck(f) {

@@ -103,8 +103,8 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
-							<textarea rows="10" cols="94" id="q_content"
+						<div class="ui-input" style="width:80%;">
+							<textarea rows="10" cols="100" id="q_content"
 							name="q_content">${dto.q_content}</textarea>
 							<label for="q_content"></label>
 						</div>

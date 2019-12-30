@@ -23,17 +23,6 @@
 src="${pageContext.request.contextPath}/smarteditor/js/HuskyEZCreator.js" 
 charset="utf-8"></script>
 
-<!-- 
-<script type="text/JavaScript">
-	window.onload = function() {
-		CKEDITOR.replace('n_content'); // <TEXTAREA>태그 id 값
-	};
-</script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
- -->
-
-
 <style type="text/css">
 .cke_1 cke cke_reset cke_chrome cke_editor_n_content cke_ltr cke_browser_webkit{
 	width: 500px !important;
@@ -62,7 +51,7 @@ charset="utf-8"></script>
 			
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
-					<div class="inner" style="width:678px;">
+					<div class="inner">
 						<div class="ui-input">
 							<input type="text" id="n_title" name="n_title"
 							placeholder="Enter 제목">
@@ -82,8 +71,8 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
-							<textarea rows="10" cols="94" id="n_content"
+						<div class="ui-input" style="width:80%;">
+							<textarea rows="10" cols="100" id="n_content"
 							name="n_content"></textarea>
 							<label for="n_content"></label>
 						</div>
@@ -117,7 +106,7 @@ charset="utf-8"></script>
 	});
 
 	function input(f) {
-		if (f.n_title.value == ''){
+		if (f.n_title.value == '') {
 			alert("제목을 입력하세요.");
 			f.n_title.focus();
 			return false;
@@ -134,7 +123,6 @@ charset="utf-8"></script>
 	
 		<!-- 파일업로드 유효성검사(널체크) -->
 		$('#n_content').val() == ""  || $('#n_content').val() == null || $('#n_content').val() == '&nbsp;' || $('#n_content').val() == '<p>&nbsp;</p>'
-	
 	}
 </script>
 

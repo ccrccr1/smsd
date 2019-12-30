@@ -1,23 +1,35 @@
 package spring.sts.smsd;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import spring.model.festival.CntDTO;
 import spring.model.festival.MemberDTO;
@@ -29,7 +41,150 @@ public class MemberController {
 	@Autowired
 	private MemberMapper mapper;
 
-	@GetMapping("/logout")
+	
+	@Inject
+	JavaMailSender mailSender;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	   // mailSending 코드
+    @PostMapping( value = "/member/auth.do" )
+    public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException {
+
+        Random r = new Random();
+        int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
+        
+        String setfrom = "koijb007@gamil.com";
+        String tomail = request.getParameter("e_mail"); // 받는 사람 이메일
+        String title = "회원가입 인증 이메일 입니다."; // 제목
+        String content =
+        
+        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+        
+        System.getProperty("line.separator")+
+                
+        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+        
+        +System.getProperty("line.separator")+
+        
+        System.getProperty("line.separator")+
+
+        " 인증번호는 " +dice+ " 입니다. "
+        
+        +System.getProperty("line.separator")+
+        
+        System.getProperty("line.separator")+
+        
+        "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+        
+        
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+                    true, "UTF-8");
+
+            messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+            messageHelper.setTo(tomail); // 받는사람 이메일
+            messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+            messageHelper.setText(content); // 메일 내용
+            
+            mailSender.send(message);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+        mv.setViewName("/member/emailinjeung");     //뷰의이름
+        mv.addObject("dice", dice);
+        mv.addObject("tomail", tomail);
+        
+        System.out.println("mv : "+mv);
+
+        response_email.setContentType("text/html; charset=UTF-8");
+        PrintWriter out_email = response_email.getWriter();
+        out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+        out_email.flush();
+        
+        
+        return mv;
+        
+    }
+
+
+    @RequestMapping("/member/email")
+    public String email() {
+    	return "member/email";
+    }
+@RequestMapping("/member/emailinjeung")
+public String email2() {
+	return "/member/emailinjeung";
+}
+//이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
+//내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
+//틀리면 다시 원래 페이지로 돌아오는 메소드
+@PostMapping(value = "/member/join_injeung{dice}")
+public ModelAndView join_injeung(String email_injeung,String tomail, @PathVariable String dice, HttpServletResponse response_equals) throws IOException {
+
+    
+    System.out.println(email_injeung);
+    
+    System.out.print("마지막 : email_injeung : "+email_injeung);
+    
+    System.out.print("마지막 : dice : "+dice);
+    
+    
+    //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
+     
+    ModelAndView mv = new ModelAndView();
+    
+    mv.setViewName("/member/create");
+    
+    mv.addObject("e_mail",email_injeung);
+    
+    if (email_injeung.equals(dice+",")) {
+        
+        //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
+        
+        
+        
+        mv.setViewName("/member/create");
+        
+        mv.addObject("e_mail",email_injeung);
+        
+        //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
+        //한번더 입력할 필요가 없게 한다.
+        
+        response_equals.setContentType("text/html; charset=UTF-8");
+        PrintWriter out_equals = response_equals.getWriter();
+        out_equals.println("<script>alert('인증번호가 일치하였습니다. 회원가입 페이지로 이동 합니다.');</script>");
+        mv.addObject("tomail", tomail);
+        out_equals.flush();
+
+        return mv;
+        
+        
+    }else if (email_injeung != dice) {
+        
+        
+        ModelAndView mv2 = new ModelAndView(); 
+        
+        mv2.setViewName("/member/emailinjeung");
+        
+        response_equals.setContentType("text/html; charset=UTF-8");
+        PrintWriter out_equals = response_equals.getWriter();
+        out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.');</script>");
+        out_equals.flush();
+        
+
+        return mv2;
+        
+    }    
+
+    return mv;
+    
+}
+
+	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
@@ -38,7 +193,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/iwrite")
+	@RequestMapping("/member/iwrite")
 	public String iwrite(String m_id,HttpServletRequest request) {
 		
 		List<CntDTO> list = mapper.iwritecnt(m_id);
@@ -51,11 +206,11 @@ public class MemberController {
 		request.setAttribute("cnt", list);
 		request.setAttribute("title", list2);
 		
-		return "/iwrite";
+		return "/member/iwrite";
 	}
 	
 	
-	@PostMapping("/login")
+	@PostMapping("/member/login")
 	public String login(@RequestParam Map<String, String> map, HttpSession session, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		System.out.println("id:" +map.get("m_id"));
@@ -96,7 +251,7 @@ public class MemberController {
 
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/member/login")
 	public String login(HttpServletRequest request) {
 		String c_id = "";
 		String c_id_val = "";
@@ -115,11 +270,11 @@ public class MemberController {
 				}
 			}
 		}
-		return "/login";
+		return "/member/login";
 
 	}
 
-	@PostMapping("/createproc")
+	@PostMapping("/member/createproc")
 	public String create(MemberDTO dto, Model model, HttpServletRequest request) {
 
 		int iflag = mapper.idcheck(dto.getM_id());
@@ -128,12 +283,12 @@ public class MemberController {
 
 			request.setAttribute("id", dto.getM_id());
 			request.setAttribute("email", dto.getM_email());
-			return "/preProc";
+			return "/member/preProc";
 
 		} else if (eflag == 1) {
 			request.setAttribute("id", dto.getM_id());
 			request.setAttribute("email", dto.getM_email());
-			return "/preProc";
+			return "/member/preProc";
 		} else if (iflag == 0 && eflag == 0) {
 			int flag = mapper.create(dto);
 			if (flag == 1) {
@@ -141,7 +296,7 @@ public class MemberController {
 			} else {
 				request.setAttribute("id", dto.getM_id());
 				request.setAttribute("email", dto.getM_email());
-				return "/preProc";
+				return "/member/preProc";
 			}
 		} else {
 			request.setAttribute("id", dto.getM_id());
@@ -151,13 +306,13 @@ public class MemberController {
 
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/member/create")
 	public String create() {
 
-		return "/create";
+		return "/member/create";
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/member/delete")
 	public String delete(String id) {
 		int flag = mapper.delete(id);
 		
@@ -170,7 +325,7 @@ public class MemberController {
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/idcheck", produces = "text/plain;charset=utf-8")
+	@GetMapping(value = "/member/idcheck", produces = "text/plain;charset=utf-8")
 	public String idcheck(String id) {
 
 		int flag = mapper.idcheck(id);
@@ -186,7 +341,7 @@ public class MemberController {
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/emailcheck", produces = "text/plain;charset=utf-8")
+	@GetMapping(value = "/member/emailcheck", produces = "text/plain;charset=utf-8")
 	public String emailcheck(String email) {
 		int flag = mapper.emailcheck(email);
 
@@ -200,13 +355,13 @@ public class MemberController {
 		return str;
 	}
 
-	@GetMapping("/agree")
+	@GetMapping("/member/agree")
 	public String agree() {
 
-		return "/agree";
+		return "/member/agree";
 	}
 
-	@RequestMapping("/mypage")
+	@RequestMapping("/member/mypage")
 	public String mypage(String id,Model model) {
 		
 		MemberDTO dto = mapper.read(id);
@@ -222,16 +377,16 @@ public class MemberController {
 		model.addAttribute("dto",dto);
 		
 		
-		return "/mypage";
+		return "/member/mypage";
 	}
 	
-	@PostMapping("/updatemypage")
+	@PostMapping("/member/updatemypage")
 	public String updatemypage(HttpServletRequest request,MemberDTO dto,HttpSession session) {
 			
 			dto.setM_id((String)session.getAttribute("id"));
 			int flag = mapper.update(dto);
 			if (flag == 1) {
-				return "redirect:mypage?id="+dto.getM_id();
+				return "redirect:/member/mypage?id="+dto.getM_id();
 			} else {
 
 				return "/preProc3";
@@ -240,7 +395,7 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/updatemypage")
+	@GetMapping("/member/updatemypage")
 	public String updatemypage(String id,Model model) {
 		
 		MemberDTO dto = mapper.read(id);
@@ -255,10 +410,10 @@ public class MemberController {
 		
 		model.addAttribute("dto",dto);
 		
-		return "/updatemypage";
+		return "/member/updatemypage";
 	}
 	
-	@PostMapping("/updatemoney")
+	@PostMapping("/member/updatemoney")
 	public String updatemypage(Map map,String m_id,String m_updatemoney,HttpSession session) {
 		
 		System.out.println(m_id);
@@ -268,13 +423,13 @@ public class MemberController {
 	
 		int flag = mapper.updatemoney(map);
 		if(flag==1) {	
-		return "redirect:mypage?id="+m_id;
+		return "redirect:/member/mypage?id="+m_id;
 		}else {
 		return "/preProc";
 		}
 	}
 	
-	@PostMapping("/updatepasswd")
+	@PostMapping("/member/updatepasswd")
 	public String updatepasswd(HttpSession session, String m_passwd,String m_updatepasswd) {
 		String m_id = (String) session.getAttribute("id");
 		Map map = new HashMap();
@@ -305,7 +460,7 @@ public class MemberController {
 		return "/preProc";
 	}
 	
-	@PostMapping("/findid")
+	@PostMapping("/member/findid")
 	public String findid(String m_name,String m_email,Model model) {
 		Map map = new HashMap();
 		System.out.println(m_name +"\n"+ m_email);
@@ -319,10 +474,10 @@ public class MemberController {
 		model.addAttribute("name",m_name);
 		model.addAttribute("id",id);
 		
-		return "/findidproc";
+		return "/member/findidproc";
 	}
 	
-	@PostMapping("/findpw")
+	@PostMapping("/member/findpw")
 	public String findpw(String m_id,String m_email,Model model) {
 		Map map = new HashMap();
 		System.out.println(m_id +"\n"+ m_email);
@@ -336,19 +491,19 @@ public class MemberController {
 		model.addAttribute("id",m_id);
 		model.addAttribute("passwd",passwd);
 		
-		return "/findpwproc";
+		return "/member/findpwproc";
 	}
 	
 	
-	@GetMapping("/findpw")
+	@GetMapping("/member/findpw")
 	public String findpw() {
 		
-		return "/findpw";
+		return "/member/findpw";
 	}
 	
-	@GetMapping("/findid")
+	@GetMapping("/member/findid")
 	public String findid() {
 		
-		return "/findid";
+		return "/member/findid";
 	}
 }

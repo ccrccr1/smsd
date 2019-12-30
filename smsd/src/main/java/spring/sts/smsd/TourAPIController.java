@@ -5,8 +5,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -157,54 +161,69 @@ public class TourAPIController {
 	// 이번년도 기준이며 다른 년도 정보를 얻고 싶으면 REQUESTURL 수정 필요
 	@PostMapping(value="/tour/api/list/allCreate")
 	public void allCreate(@RequestBody Map map){
-		System.out.println("success");
-		System.out.println(map.get("f_sdate"));
-		String requestAllFestivalURL = RequestURL.ALLFESTIVALURL;
+		int nYear = Integer.parseInt(String.valueOf(new GregorianCalendar(Locale.KOREA).get(Calendar.YEAR)).substring(2));
+		int totalPage = 0;
+		int pageNo = 1;
+		String f_sdate = "&eventstartdate="+nYear+(String)map.get("f_sdate");
+		String f_edate = "&eventenddate="+nYear+(String)map.get("f_edate");
 		Random random = new Random();
-		try {
-			URL url = new URL(requestAllFestivalURL);
-			InputStream in = url.openStream();  
-			CachedOutputStream cos = new CachedOutputStream();
-			IOUtils.copy(in, cos);
-			in.close();
-			cos.close();
+		mapper.deleteDateFestival();
+		mapper.deleteDateFestivalImage();
+		do {
+			String requestAllFestivalURL = RequestURL.ALLFESTIVALURL+f_sdate+f_edate+"&pageNo="+pageNo;
 			
-			String data = cos.getOut().toString();
-			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(data);
-			JSONObject json = (JSONObject)obj;
-			JSONObject response = (JSONObject)json.get("response");
-			JSONObject body = (JSONObject)response.get("body");
-			JSONObject items = (JSONObject)body.get("items");
-			JSONArray itemList = (JSONArray)items.get("item");
-			
-			for(int i=0;i<itemList.size();i++) {
-				FestivalDTO dto = new FestivalDTO();
-				JSONObject item = (JSONObject)itemList.get(i);
-				dto.setF_id(Integer.parseInt(APIUtility.checkItem(item.get("contentid"))));
-				dto.setF_title(APIUtility.checkItem(item.get("title")));
-				dto.setF_area(Integer.parseInt(APIUtility.checkItem(item.get("areacode"))));
-				dto.setF_address(APIUtility.checkItem(item.get("addr1")));
-				dto.setF_sdate(APIUtility.checkItem(item.get("eventstartdate")));
-				dto.setF_edate(APIUtility.checkItem(item.get("eventenddate")));
-				dto.setF_cnt(Integer.parseInt(APIUtility.checkItem(item.get("readcount"))));
-				dto.setF_tel(APIUtility.checkItem(item.get("tel")));
-				dto.setF_image(APIUtility.checkItem(item.get("firstimage")));
-				int price = (random.nextInt(10)+1)*1000;
-				dto.setF_price(price);
-				mapper.enrollFestival(dto);
-				mapper.enrollFestivalImage(dto);
+			System.out.println(requestAllFestivalURL);
+			try {
+				URL url = new URL(requestAllFestivalURL);
+				InputStream in = url.openStream();  
+				CachedOutputStream cos = new CachedOutputStream();
+				IOUtils.copy(in, cos);
+				in.close();
+				cos.close();
 				
-				//Festival 최신화 하고 최적화 반드시 필요
-				//Image 가 없는 축제 삭제
-				mapper.optimize();
+				String data = cos.getOut().toString();
+				JSONParser parser = new JSONParser();
+				Object obj = parser.parse(data);
+				JSONObject json = (JSONObject)obj;
+				JSONObject response = (JSONObject)json.get("response");
+				JSONObject body = (JSONObject)response.get("body");
+				int totalCount = Integer.parseInt(body.get("totalCount").toString());
+				totalPage = totalCount / 100;
+				if(totalPage > 3) {
+					totalPage = 3;
+				}
+				JSONObject items = (JSONObject)body.get("items");
+				JSONArray itemList = (JSONArray)items.get("item");
+				System.out.println(itemList);
+				for(int i=0;i<itemList.size();i++) {
+					FestivalDTO dto = new FestivalDTO();
+					JSONObject item = (JSONObject)itemList.get(i);
+					dto.setF_id(Integer.parseInt(APIUtility.checkItem(item.get("contentid"))));
+					dto.setF_title(APIUtility.checkItem(item.get("title")));
+					dto.setF_area(Integer.parseInt(APIUtility.checkItem(item.get("areacode"))));
+					dto.setF_address(APIUtility.checkItem(item.get("addr1")));
+					dto.setF_sdate(APIUtility.checkItem(item.get("eventstartdate")));
+					dto.setF_edate(APIUtility.checkItem(item.get("eventenddate")));
+					dto.setF_cnt(Integer.parseInt(APIUtility.checkItem(item.get("readcount"))));
+					dto.setF_tel(APIUtility.checkItem(item.get("tel")));
+					dto.setF_image(APIUtility.checkItem(item.get("firstimage")));
+					int price = (random.nextInt(10)+1)*1000;
+					dto.setF_price(price);
+					mapper.enrollFestival(dto);
+					mapper.enrollFestivalImage(dto);
+					
+					//Festival 최신화 하고 최적화 반드시 필요
+					//Image 가 없는 축제 삭제
+					mapper.optimize();
+				}
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+			pageNo++;
+		}while(pageNo <= totalPage);
 	}
 }

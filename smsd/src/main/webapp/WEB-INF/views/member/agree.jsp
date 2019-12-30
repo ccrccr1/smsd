@@ -10,6 +10,8 @@
 	href="${root }/css/createcss/information.css" />
 <link rel="stylesheet"
 	href="${root }/css/createcss/layout.css" />
+<link rel="stylesheet"
+	href="${root }/css/createcss/cert.css" />
 <script type="text/javascript">
 
 function send(){
@@ -21,12 +23,76 @@ function send(){
 }
 
 
+
 </script>
 <style type="text/css">
 	.wrapper{
 		height: 1200px;
 	}
 </style>
+<style type="text/css">
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left:500px;
+	top: 300px;
+	width: auto;
+	height: auto; /* Full height */
+	
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+    padding-left: 10px;
+    padding-top: 0;
+    padding-bottom: 20px;
+	border: 1px solid #888;
+	width: auto; /* Could be more or less, depending on screen size */
+	height: auto;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+	 
+	
+	    $("#email_injeung").click(function() {
+	      $("#myModal").css({
+	        "display": "block"
+	      });
+	    });
+	 
+	    $(".close").click(function() {
+	      $("#myModal").css({
+	        "display": "none"
+	      });
+	    });
+	 
+	    $("html").click(function(event) {
+	      if (event.target.id === "myModal") {
+	        $("#myModal").css({
+	          "display": "none"
+	        });
+	      }
+	    });
+	});
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -128,7 +194,7 @@ function send(){
 
 
 					</div>
-					<form class="form-horizontal" action="${root }/create" method="post"
+					<form class="form-horizontal" action="emailinjeung" method="post"
 						onsubmit="return send()" name="frm">
 							<input id="agree" type="checkbox" name="agree" value="1"><label
 								for="agree"> 약관에 동의합니다 </label>
@@ -144,5 +210,6 @@ function send(){
 		</div>
 		
 	</div>
+
 </body>
 </html>

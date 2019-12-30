@@ -35,7 +35,6 @@ charset="utf-8"></script>
 </script>
  -->
 
-
 </head>
 <body>
 
@@ -66,7 +65,7 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
+						<div class="ui-input">
 							<input type="text" id="n_title" name="n_title"
 							value="${dto.n_title}">
 							
@@ -85,8 +84,8 @@ charset="utf-8"></script>
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input" style="width:678px;">
-							<textarea rows="10" cols="94" id="n_content" name="n_content">${dto.n_content}</textarea>
+						<div class="ui-input" style="width:80%;">
+							<textarea rows="10" cols="100" id="n_content" name="n_content">${dto.n_content}</textarea>
 							<label for="n_content"></label>
 						</div>
 					</div>
@@ -121,7 +120,7 @@ charset="utf-8"></script>
 	});
 
 	function input(f) {
-		if (f.n_title.value == ''){
+		if (f.n_title.value == '') {
 			alert("제목을 입력하세요.");
 			f.n_title.focus();
 			return false;
@@ -138,7 +137,6 @@ charset="utf-8"></script>
 	
 		<!-- 파일업로드 유효성검사(널체크) -->
 		$('#n_content').val() == ""  || $('#n_content').val() == null || $('#n_content').val() == '&nbsp;' || $('#n_content').val() == '<p>&nbsp;</p>'
-	
 	}
 </script>
 
