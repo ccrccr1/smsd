@@ -10,8 +10,6 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/h.css">
@@ -21,27 +19,10 @@
 <link type="text/css" rel="stylesheet" href="../css/popup.css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 
-<script type="text/JavaScript">
-	window.onload = function() {
-		CKEDITOR.replace('n_content'); // <TEXTAREA>태그 id 값
-	}
-</script>
+<script type="text/javascript" 
+src="${pageContext.request.contextPath}/smarteditor/js/HuskyEZCreator.js" 
+charset="utf-8"></script>
 
-<script type="text/javascript">
-	function input(f) {
-		if (f.n_title.value == ''){
-			alert("제목을 입력하세요.");
-			f.n_title.focus();
-			return false;
-		}
-		
-		if (CKEDITOR.instances['n_content'].getData() == '') {
-      		window.alert('내용을 입력해 주세요.');
-      		CKEDITOR.instances['n_content'].focus();
-      		return false;
-    	}
-	}
-</script>
 <style type="text/css">
 .cke_1 cke cke_reset cke_chrome cke_editor_n_content cke_ltr cke_browser_webkit{
 	width: 500px !important;
@@ -90,8 +71,8 @@
 			<div class="col-md">
 				<div class="form-wrap __normal __x1">
 					<div class="inner">
-						<div class="ui-input">
-							<textarea rows="10" cols="70" id="n_content"
+						<div class="ui-input" style="width:80%;">
+							<textarea rows="10" cols="100" id="n_content"
 							name="n_content"></textarea>
 							<label for="n_content"></label>
 						</div>
@@ -113,6 +94,38 @@
 </form>
 
 </div>
+
+<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	 	oAppRef: oEditors,
+	 	elPlaceHolder: "n_content",
+	 	sSkinURI: "${pageContext.request.contextPath}/smarteditor/SmartEditor2Skin.html",
+	 	fCreator: "createSEditor2",
+	 	htParams: { fOnBeforeUnload : function(){}}
+	});
+
+	function input(f) {
+		if (f.n_title.value == '') {
+			alert("제목을 입력하세요.");
+			f.n_title.focus();
+			return false;
+		}
+		
+// 		if (CKEDITOR.instances['n_content'].getData() == '') {
+//       		window.alert('내용을 입력해 주세요.');
+//       		CKEDITOR.instances['n_content'].focus();
+//       		return false;
+//     	}
+	
+		<!-- (페이지 이동 바로직전(onsubmit)에 textarea에 스마트에디터 내용 업데이트 ) -->
+		oEditors.getById["n_content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+		<!-- 파일업로드 유효성검사(널체크) -->
+		$('#n_content').val() == ""  || $('#n_content').val() == null || $('#n_content').val() == '&nbsp;' || $('#n_content').val() == '<p>&nbsp;</p>'
+	}
+</script>
+
 </div>
 
 </body>

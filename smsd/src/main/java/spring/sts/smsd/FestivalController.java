@@ -73,13 +73,18 @@ public class FestivalController {
 	@GetMapping("/festival/list")
 	public String list(HttpServletRequest request) {
 		
+		// home -> main 시 필요한 parameter
 		String season = request.getParameter("season");
+		
+		// 검색용 Parameter
 		String price = request.getParameter("price");
 		String search_sdate = request.getParameter("sdate");
 		String search_edate = request.getParameter("edate");
 		String area = request.getParameter("area");
 		boolean isSearch = false;
 		
+		
+		// 검색 결과를 받아오는 코드
 		Map searchMap = new HashMap();
 		List<FestivalDTO> searchList = new ArrayList();
 		if(price != null) {
@@ -93,62 +98,72 @@ public class FestivalController {
 			isSearch = true;
 		}
 		
-		int nMonth;
-		int nYear;
 		
 		String sdate = "";
 		String edate = "";
 		
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		int nMonth = 0;
+		int nYear;
 		
 		nYear = calendar.get(Calendar.YEAR);
-		nMonth = calendar.get(Calendar.MONTH) + 1;
 		
 		nYear = Integer.parseInt(String.valueOf(nYear).substring(2));
+		
+		
+		
 		if(season == null || season.equals("")) {
-			switch(nMonth) {
-			case 1:case 2:case 11:case 12:
-				season = "winter";
+			nMonth = calendar.get(Calendar.MONTH) + 1;
+		} else {
+			switch(season) {
+			case "winter":
+				nMonth = 1;
 				break;
-			case 3:case 4:case 5:
-				season = "spring";
+			case "spring":
+				nMonth = 3;
 				break;
-			case 6:case 7:case 8:
-				season = "summer";
+			case "summer":
+				nMonth = 6;
 				break;
-			case 9:case 10:
-				season = "autumn";
+			case "autumn":
+				nMonth = 9;
 				break;
 			}
 		}
 		
-		switch(season) {
-		case "spring":
-			sdate = nYear+"0301";
-			edate = nYear+"0531";
-			break;
-		case "summer":
-			sdate = nYear+"0601";
-			edate = nYear+"0831";
-			break;
-		case "autumn":
-			sdate = nYear+"0901";
-			edate = nYear+"1031";
-			break;
-		case "winter":
+		switch(nMonth) {
+		case 1:case 2:case 11:case 12:
+			season = "winter";
 			sdate = nYear+"1101";
 			edate = ++nYear+"0228";
 			break;
-		}
-		
-		
+		case 3:case 4:case 5:
+			season = "spring";
+			sdate = nYear+"0301";
+			edate = nYear+"0531";
+			break;
+		case 6:case 7:case 8:
+			season = "summer";
+			sdate = nYear+"0601";
+			edate = nYear+"0831";
+			break;
+		case 9:case 10:
+			season = "autumn";
+			sdate = nYear+"0901";
+			edate = nYear+"1031";
+			break;
+		}			
+
 		Map map = new HashMap();
 		map.put("season", season);
 		map.put("sdate", sdate);
 		map.put("edate", edate);
+		System.out.println("개새꺄:"+sdate);
+		System.out.println("개새꺄:"+edate);
 		List<FestivalDTO> topList = mapper.topFestivalList(map);
 		Iterator<FestivalDTO> topIter = topList.iterator();
 
+		System.out.println(topList.size());
 		List<FestivalDTO> recentList = mapper.recentFestivalList(map);
 		
 		boolean isNull = true;
@@ -156,7 +171,7 @@ public class FestivalController {
 			isNull = false;
 		}
 		
-		request.setAttribute("best", topIter.next());
+//		request.setAttribute("best", topIter.next());
 		request.setAttribute("isNull", isNull);
 		request.setAttribute("isSearch", isSearch);
 		request.setAttribute("topList", topList);

@@ -21,6 +21,7 @@ public class Utility {
 //	public static int rcount(int bbsno,ReplyMapper rmapper) {
 //		return rmapper.rcount(bbsno);
 //	}
+	
 	public static int rcount(int b_no, BoardReplyMapper brmapper) {
 		return brmapper.rcount(b_no);
 	}
