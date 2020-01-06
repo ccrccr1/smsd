@@ -158,12 +158,15 @@ public class FestivalController {
 		map.put("season", season);
 		map.put("sdate", sdate);
 		map.put("edate", edate);
-		System.out.println("개새꺄:"+sdate);
-		System.out.println("개새꺄:"+edate);
 		List<FestivalDTO> topList = mapper.topFestivalList(map);
-		Iterator<FestivalDTO> topIter = topList.iterator();
+		if(topList.size() != 0) {
+			Iterator<FestivalDTO> topIter = topList.iterator();			
+			request.setAttribute("best", topIter.next());
+		} else {
+			FestivalDTO nullDto = new FestivalDTO();
+			request.setAttribute("best", nullDto);			
+		}
 
-		System.out.println(topList.size());
 		List<FestivalDTO> recentList = mapper.recentFestivalList(map);
 		
 		boolean isNull = true;
@@ -171,7 +174,6 @@ public class FestivalController {
 			isNull = false;
 		}
 		
-//		request.setAttribute("best", topIter.next());
 		request.setAttribute("isNull", isNull);
 		request.setAttribute("isSearch", isSearch);
 		request.setAttribute("topList", topList);
