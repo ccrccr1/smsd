@@ -70,12 +70,21 @@ function graph(){
 	
 	var select_val =  $('#year_sel option:selected').val();
 	
+	for(var i=1; i <=12; i++){
+		$('#gBar'+i).css("height" , "0");
+		$('#gBar'+i).text("");
+	}
+	
 	<c:forEach var="dto" items="${data}">
 	var month = ${dto.month}
 	var month_total = ${dto.month_total}
 	var i = month;
 			if(${dto.year} == select_val){
 				$('#gBar'+i).text(month_total);
+			}
+			if(select_val == 'reset'){
+				$('#gBar'+i).css("height" , "0");
+				$('#gBar'+i).text("");
 			}
 	</c:forEach>	
 	
@@ -461,7 +470,8 @@ function graph(){
 				</div>
 				<div class="year_div">
 					<select class="year_sel" id="year_sel" onchange="graph()" >
-						<option>선택</option>
+						<option value="reset">선택</option>
+						<option class="year_op" value="2020">2020년</option>
 						<option class="year_op" value="2019">2019년</option>
 						<option class="year_op" value="2018">2018년</option>
 					</select> 

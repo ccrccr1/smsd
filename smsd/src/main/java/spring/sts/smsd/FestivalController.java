@@ -108,7 +108,8 @@ public class FestivalController {
 		
 		nYear = calendar.get(Calendar.YEAR);
 		
-		nYear = Integer.parseInt(String.valueOf(nYear).substring(2));
+//		nYear = Integer.parseInt(String.valueOf(nYear).substring(2));
+		nYear = 19;
 		
 		
 		

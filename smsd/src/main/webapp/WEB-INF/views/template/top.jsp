@@ -19,7 +19,7 @@
 				<li><a href="${root}/festival/list">홈</a></li>
 				<li><a href="${root}/notice/list">공지사항</a></li>
 				<li><a href="${root}/board/list">모임 게시판</a></li>
-				<li>test용 id:admin , password :1234</li>
+<!-- 				<li>test용 id:admin , password :1234</li> -->
 			</ul>
 			
 			

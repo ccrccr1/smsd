@@ -161,7 +161,8 @@ public class TourAPIController {
 	// 이번년도 기준이며 다른 년도 정보를 얻고 싶으면 REQUESTURL 수정 필요
 	@PostMapping(value="/tour/api/list/allCreate")
 	public void allCreate(@RequestBody Map map){
-		int nYear = Integer.parseInt(String.valueOf(new GregorianCalendar(Locale.KOREA).get(Calendar.YEAR)).substring(2));
+//		int nYear = Integer.parseInt(String.valueOf(new GregorianCalendar(Locale.KOREA).get(Calendar.YEAR)).substring(2));
+		int nYear = 19;
 		int totalPage = 0;
 		int pageNo = 1;
 		String f_sdate = "&eventstartdate="+nYear+(String)map.get("f_sdate");

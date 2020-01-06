@@ -62,7 +62,7 @@ public class OrderController {
 		map.put("eno", eno);
 
 		List<OrderDTO> list = mapper.list(map);
-		int sum = mapper.sum();	
+		
 		
 		List<AmountDTO> data = mapper.month_sum();
 		Map map2 = new HashMap();
@@ -86,10 +86,15 @@ public class OrderController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("nowPage", nowPage);
-		request.setAttribute("sum", sum);
 		request.setAttribute("data", data);
-			
-		return "/order/list";
+		
+		if(list.isEmpty()) {
+			return "/order/list";
+		}else {
+			int sum = mapper.sum();	
+			request.setAttribute("sum", sum);
+			return "/order/list";
+		}
 	}
 	@RequestMapping("/order/orderComf2")
 	public String create(HttpServletRequest request, Model model, FestivalDTO fdto, MemberDTO mdto) {	
